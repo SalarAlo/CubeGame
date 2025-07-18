@@ -4,7 +4,6 @@
 void VertexBuffer::Bind() {
     assert(m_Initialised && m_Bound && "VBO hasnt been initialised or is already bound")
     glBindBuffer(GL_ARRAY_BUFFER, m_BufferId);
-    
 }
 
 void VertexBuffer::Init() {
@@ -12,4 +11,9 @@ void VertexBuffer::Init() {
     glGenBuffers(1, &m_BufferId);
 
     m_Initialised = true;
+}
+
+void VertexBuffer::Unbind() {
+    assert(m_Initialised && !m_Bound && "VBO hasnt been initialised or is already unbound")
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
