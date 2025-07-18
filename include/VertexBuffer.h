@@ -7,6 +7,7 @@ public:
     void Init();
     void Bind();
     void Unbind();
+    void SetData();
 
 private:
     unsigned int m_BufferId;
