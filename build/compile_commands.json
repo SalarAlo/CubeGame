@@ -31,6 +31,12 @@
 },
 {
   "directory": "/home/salar/Desktop/Programming/Cpp/build",
+  "command": "/usr/bin/c++  -I/home/salar/Desktop/Programming/Cpp/include -I/home/salar/Desktop/Programming/Cpp/external/glad/include -I/home/salar/Desktop/Programming/Cpp/external/glfw/include  -o CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/VertexBuffer.cpp",
+  "file": "/home/salar/Desktop/Programming/Cpp/src/core/VertexBuffer.cpp",
+  "output": "CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o"
+},
+{
+  "directory": "/home/salar/Desktop/Programming/Cpp/build",
   "command": "/usr/bin/c++  -I/home/salar/Desktop/Programming/Cpp/include -I/home/salar/Desktop/Programming/Cpp/external/glad/include -I/home/salar/Desktop/Programming/Cpp/external/glfw/include  -o CMakeFiles/hello_world.dir/src/main.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/main.cpp",
   "file": "/home/salar/Desktop/Programming/Cpp/src/main.cpp",
   "output": "CMakeFiles/hello_world.dir/src/main.cpp.o"

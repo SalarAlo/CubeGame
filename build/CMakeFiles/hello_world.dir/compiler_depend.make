@@ -1381,6 +1381,39 @@ CMakeFiles/hello_world.dir/src/core/Utils.cpp.o: /home/salar/Desktop/Programming
   /usr/lib/gcc/x86_64-redhat-linux/15/include/stddef.h \
   /usr/lib/gcc/x86_64-redhat-linux/15/include/stdint.h
 
+CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o: /home/salar/Desktop/Programming/Cpp/src/core/VertexBuffer.cpp \
+  /home/salar/Desktop/Programming/Cpp/external/glad/include/KHR/khrplatform.h \
+  /home/salar/Desktop/Programming/Cpp/external/glad/include/glad/glad.h \
+  /home/salar/Desktop/Programming/Cpp/include/VertexBuffer.h \
+  /usr/include/assert.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/wchar.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/c++/15/bits/version.h \
+  /usr/include/c++/15/cassert \
+  /usr/include/c++/15/cstddef \
+  /usr/include/c++/15/pstl/pstl_config.h \
+  /usr/include/c++/15/x86_64-redhat-linux/bits/c++config.h \
+  /usr/include/c++/15/x86_64-redhat-linux/bits/cpu_defines.h \
+  /usr/include/c++/15/x86_64-redhat-linux/bits/os_defines.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
+  /usr/include/sys/cdefs.h \
+  /usr/lib/gcc/x86_64-redhat-linux/15/include/stddef.h \
+  /usr/lib/gcc/x86_64-redhat-linux/15/include/stdint.h
+
 CMakeFiles/hello_world.dir/src/main.cpp.o: /home/salar/Desktop/Programming/Cpp/src/main.cpp \
   /home/salar/Desktop/Programming/Cpp/external/glad/include/KHR/khrplatform.h \
   /home/salar/Desktop/Programming/Cpp/external/glad/include/glad/glad.h \
@@ -1390,6 +1423,7 @@ CMakeFiles/hello_world.dir/src/main.cpp.o: /home/salar/Desktop/Programming/Cpp/s
   /home/salar/Desktop/Programming/Cpp/include/ShaderUtils.h \
   /home/salar/Desktop/Programming/Cpp/include/ShaderWriter.h \
   /home/salar/Desktop/Programming/Cpp/include/Utils.h \
+  /home/salar/Desktop/Programming/Cpp/include/VertexBuffer.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
@@ -1883,6 +1917,7 @@ hello_world: /lib64/ld-linux-x86-64.so.2 \
   CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o \
   CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o \
   CMakeFiles/hello_world.dir/src/core/Utils.cpp.o \
+  CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o \
   CMakeFiles/hello_world.dir/src/main.cpp.o \
   external/glad/libglad.a \
   external/glfw/src/libglfw3.a
@@ -1938,8 +1973,6 @@ CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o:
 
 /usr/include/c++/15/cfloat:
 
-/usr/include/c++/15/bits/sstream.tcc:
-
 /usr/include/c++/15/bits/shared_ptr.h:
 
 /usr/include/c++/15/bits/quoted_string.h:
@@ -1957,6 +1990,10 @@ CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o:
 /usr/include/glm/packing.hpp:
 
 /home/salar/Desktop/Programming/Cpp/src/main.cpp:
+
+/usr/include/c++/15/bits/sstream.tcc:
+
+/home/salar/Desktop/Programming/Cpp/src/core/VertexBuffer.cpp:
 
 /usr/include/string.h:
 
@@ -2173,6 +2210,8 @@ CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o:
 /usr/include/glm/detail/type_mat4x4.inl:
 
 /usr/include/glm/detail/type_mat4x4.hpp:
+
+CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o:
 
 /usr/include/glm/detail/type_mat4x3.hpp:
 
@@ -2915,5 +2954,7 @@ external/glad/libglad.a:
 /usr/include/glm/detail/func_exponential.inl:
 
 /usr/include/glm/detail/func_matrix.inl:
+
+/home/salar/Desktop/Programming/Cpp/include/VertexBuffer.h:
 
 /usr/include/glm/detail/func_vector_relational.inl:

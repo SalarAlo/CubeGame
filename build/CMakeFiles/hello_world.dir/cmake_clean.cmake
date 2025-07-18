@@ -10,6 +10,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o.d"
   "CMakeFiles/hello_world.dir/src/core/Utils.cpp.o"
   "CMakeFiles/hello_world.dir/src/core/Utils.cpp.o.d"
+  "CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o"
+  "CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o.d"
   "CMakeFiles/hello_world.dir/src/main.cpp.o"
   "CMakeFiles/hello_world.dir/src/main.cpp.o.d"
   "hello_world"

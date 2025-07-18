@@ -7,6 +7,7 @@ hello_world: \
   CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o \
   CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o \
   CMakeFiles/hello_world.dir/src/core/Utils.cpp.o \
+  CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o \
   CMakeFiles/hello_world.dir/src/main.cpp.o \
   external/glad/libglad.a \
   external/glfw/src/libglfw3.a \
@@ -62,6 +63,8 @@ CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o:
 CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o:
 
 CMakeFiles/hello_world.dir/src/core/Utils.cpp.o:
+
+CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o:
 
 CMakeFiles/hello_world.dir/src/main.cpp.o:
 

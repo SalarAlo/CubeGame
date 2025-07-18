@@ -295,6 +295,30 @@ src/core/Utils.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/Utils.cpp.s
 .PHONY : src/core/Utils.cpp.s
 
+src/core/VertexBuffer.o: src/core/VertexBuffer.cpp.o
+.PHONY : src/core/VertexBuffer.o
+
+# target to build an object file
+src/core/VertexBuffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o
+.PHONY : src/core/VertexBuffer.cpp.o
+
+src/core/VertexBuffer.i: src/core/VertexBuffer.cpp.i
+.PHONY : src/core/VertexBuffer.i
+
+# target to preprocess a source file
+src/core/VertexBuffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.i
+.PHONY : src/core/VertexBuffer.cpp.i
+
+src/core/VertexBuffer.s: src/core/VertexBuffer.cpp.s
+.PHONY : src/core/VertexBuffer.s
+
+# target to generate assembly for a file
+src/core/VertexBuffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.s
+.PHONY : src/core/VertexBuffer.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -347,6 +371,9 @@ help:
 	@echo "... src/core/Utils.o"
 	@echo "... src/core/Utils.i"
 	@echo "... src/core/Utils.s"
+	@echo "... src/core/VertexBuffer.o"
+	@echo "... src/core/VertexBuffer.i"
+	@echo "... src/core/VertexBuffer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

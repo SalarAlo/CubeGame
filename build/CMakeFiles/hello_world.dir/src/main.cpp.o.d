@@ -353,4 +353,5 @@ CMakeFiles/hello_world.dir/src/main.cpp.o: \
  /usr/include/c++/15/bits/vector.tcc \
  /home/salar/Desktop/Programming/Cpp/include/ShaderManager.h \
  /home/salar/Desktop/Programming/Cpp/include/ShaderUtils.h \
- /home/salar/Desktop/Programming/Cpp/include/ShaderWriter.h
+ /home/salar/Desktop/Programming/Cpp/include/ShaderWriter.h \
+ /home/salar/Desktop/Programming/Cpp/include/VertexBuffer.h
