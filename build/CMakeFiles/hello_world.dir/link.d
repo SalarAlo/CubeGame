@@ -2,11 +2,13 @@ hello_world: \
   /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crt1.o \
   /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/crti.o \
   /usr/lib/gcc/x86_64-redhat-linux/15/crtbegin.o \
+  CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o \
   CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o \
   CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o \
   CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o \
   CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o \
   CMakeFiles/hello_world.dir/src/core/Utils.cpp.o \
+  CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o \
   CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o \
   CMakeFiles/hello_world.dir/src/main.cpp.o \
   external/glad/libglad.a \
@@ -54,6 +56,8 @@ hello_world: \
 
 /usr/lib/gcc/x86_64-redhat-linux/15/crtbegin.o:
 
+CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o:
+
 CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o:
 
 CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o:
@@ -63,6 +67,8 @@ CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o:
 CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o:
 
 CMakeFiles/hello_world.dir/src/core/Utils.cpp.o:
+
+CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o:
 
 CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o:
 

@@ -1,6 +1,6 @@
 // 3rd Party
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -15,15 +15,14 @@
 #include "ShaderUtils.h"
 #include "ShaderWriter.h"
 #include "Utils.h"
+#include "VertexArray.h"
 #include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "VertexBufferLayout.h"
 
-int main()
-{
+int main() {
 	ScreenWindow screenWindow(800, 600, "Rotating Cube");
 	screenWindow.Init();
-
-	VertexBuffer vertexBuffer;
-	vertexBuffer.Init();
 
 	ShaderManager shaderManager(SHADER_PATH);
 	shaderManager.CreateShaderProgram();
@@ -52,29 +51,32 @@ int main()
 		5, 1, 2, 2, 6, 5 // right
 	};
 
-	GLuint VAO, EBO;
-	glGenVertexArrays(1, &VAO);
+	VertexBuffer vertexBuffer;
 	vertexBuffer.Init();
-	glGenBuffers(1, &EBO);
 
-	glBindVertexArray(VAO);
+        IndexBuffer indexBuffer;
+        indexBuffer.Init();
+
+        VertexArray vertexArray;
+        vertexArray.Init();
+
+        vertexArray.Bind();
 
 	vertexBuffer.Bind();
 	vertexBuffer.SetData(vertices, sizeof(vertices));
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,
-	    GL_STATIC_DRAW);
+        indexBuffer.Bind();
+        indexBuffer.FillData(indices, sizeof(indices));
 
-	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
-	    (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
+        VertexBufferLayout layout;
+        layout.Push<float>(false, 3);
+        layout.Push<float>(false, 3);
+ 
+        vertexArray.ConnectLayoutToBuffer(vertexBuffer, layout);
 
-	glBindVertexArray(0);
+        vertexArray.Unbind();
+        indexBuffer.Unbind();
+        vertexBuffer.Unbind();
 
 	// Matrices location
 	std::string modelMatrixName { "model" };
@@ -101,15 +103,15 @@ int main()
 		shaderWriter.WriteUniformMatrix4(viewMatrixName, view);
 		shaderWriter.WriteUniformMatrix4(projMatrixName, projection);
 
-		glBindVertexArray(VAO);
+                vertexArray.Bind();
+
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+                vertexArray.Unbind();
 
 		glfwSwapBuffers(screenWindow.GetGLFWWindow());
 	}
 
-	// Cleanup
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &EBO);
 
 	return 0;
 }

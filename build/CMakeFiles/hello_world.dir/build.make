@@ -72,10 +72,24 @@ include CMakeFiles/hello_world.dir/flags.make
 CMakeFiles/hello_world.dir/codegen:
 .PHONY : CMakeFiles/hello_world.dir/codegen
 
+CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o: CMakeFiles/hello_world.dir/flags.make
+CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o: /home/salar/Desktop/Programming/Cpp/src/core/IndexBuffer.cpp
+CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o: CMakeFiles/hello_world.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o -MF CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o.d -o CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/IndexBuffer.cpp
+
+CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salar/Desktop/Programming/Cpp/src/core/IndexBuffer.cpp > CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.i
+
+CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salar/Desktop/Programming/Cpp/src/core/IndexBuffer.cpp -o CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.s
+
 CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o: CMakeFiles/hello_world.dir/flags.make
 CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o: /home/salar/Desktop/Programming/Cpp/src/core/ScreenWindow.cpp
 CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o: CMakeFiles/hello_world.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o -MF CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o.d -o CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/ScreenWindow.cpp
 
 CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.i: cmake_force
@@ -89,7 +103,7 @@ CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.s: cmake_force
 CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o: CMakeFiles/hello_world.dir/flags.make
 CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o: /home/salar/Desktop/Programming/Cpp/src/core/ShaderManager.cpp
 CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o: CMakeFiles/hello_world.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o -MF CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o.d -o CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/ShaderManager.cpp
 
 CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.i: cmake_force
@@ -103,7 +117,7 @@ CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.s: cmake_force
 CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o: CMakeFiles/hello_world.dir/flags.make
 CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o: /home/salar/Desktop/Programming/Cpp/src/core/ShaderUtils.cpp
 CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o: CMakeFiles/hello_world.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o -MF CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o.d -o CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/ShaderUtils.cpp
 
 CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.s: cmake_force
 CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o: CMakeFiles/hello_world.dir/flags.make
 CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o: /home/salar/Desktop/Programming/Cpp/src/core/ShaderWriter.cpp
 CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o: CMakeFiles/hello_world.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o -MF CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o.d -o CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/ShaderWriter.cpp
 
 CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.s: cmake_force
 CMakeFiles/hello_world.dir/src/core/Utils.cpp.o: CMakeFiles/hello_world.dir/flags.make
 CMakeFiles/hello_world.dir/src/core/Utils.cpp.o: /home/salar/Desktop/Programming/Cpp/src/core/Utils.cpp
 CMakeFiles/hello_world.dir/src/core/Utils.cpp.o: CMakeFiles/hello_world.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/hello_world.dir/src/core/Utils.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/hello_world.dir/src/core/Utils.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hello_world.dir/src/core/Utils.cpp.o -MF CMakeFiles/hello_world.dir/src/core/Utils.cpp.o.d -o CMakeFiles/hello_world.dir/src/core/Utils.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/Utils.cpp
 
 CMakeFiles/hello_world.dir/src/core/Utils.cpp.i: cmake_force
@@ -142,10 +156,24 @@ CMakeFiles/hello_world.dir/src/core/Utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/hello_world.dir/src/core/Utils.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salar/Desktop/Programming/Cpp/src/core/Utils.cpp -o CMakeFiles/hello_world.dir/src/core/Utils.cpp.s
 
+CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o: CMakeFiles/hello_world.dir/flags.make
+CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o: /home/salar/Desktop/Programming/Cpp/src/core/VertexArray.cpp
+CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o: CMakeFiles/hello_world.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o -MF CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o.d -o CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/VertexArray.cpp
+
+CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/salar/Desktop/Programming/Cpp/src/core/VertexArray.cpp > CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.i
+
+CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/salar/Desktop/Programming/Cpp/src/core/VertexArray.cpp -o CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.s
+
 CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o: CMakeFiles/hello_world.dir/flags.make
 CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o: /home/salar/Desktop/Programming/Cpp/src/core/VertexBuffer.cpp
 CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o: CMakeFiles/hello_world.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o -MF CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o.d -o CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/VertexBuffer.cpp
 
 CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.i: cmake_force
@@ -159,7 +187,7 @@ CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.s: cmake_force
 CMakeFiles/hello_world.dir/src/main.cpp.o: CMakeFiles/hello_world.dir/flags.make
 CMakeFiles/hello_world.dir/src/main.cpp.o: /home/salar/Desktop/Programming/Cpp/src/main.cpp
 CMakeFiles/hello_world.dir/src/main.cpp.o: CMakeFiles/hello_world.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/hello_world.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/hello_world.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hello_world.dir/src/main.cpp.o -MF CMakeFiles/hello_world.dir/src/main.cpp.o.d -o CMakeFiles/hello_world.dir/src/main.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/main.cpp
 
 CMakeFiles/hello_world.dir/src/main.cpp.i: cmake_force
@@ -172,22 +200,26 @@ CMakeFiles/hello_world.dir/src/main.cpp.s: cmake_force
 
 # Object files for target hello_world
 hello_world_OBJECTS = \
+"CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o" \
 "CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o" \
 "CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o" \
 "CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o" \
 "CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o" \
 "CMakeFiles/hello_world.dir/src/core/Utils.cpp.o" \
+"CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o" \
 "CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o" \
 "CMakeFiles/hello_world.dir/src/main.cpp.o"
 
 # External object files for target hello_world
 hello_world_EXTERNAL_OBJECTS =
 
+hello_world: CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o
 hello_world: CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o
 hello_world: CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o
 hello_world: CMakeFiles/hello_world.dir/src/core/ShaderUtils.cpp.o
 hello_world: CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o
 hello_world: CMakeFiles/hello_world.dir/src/core/Utils.cpp.o
+hello_world: CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o
 hello_world: CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o
 hello_world: CMakeFiles/hello_world.dir/src/main.cpp.o
 hello_world: CMakeFiles/hello_world.dir/build.make
@@ -199,7 +231,7 @@ hello_world: /usr/lib64/libm.so
 hello_world: /usr/lib64/libGLX.so
 hello_world: /usr/lib64/libOpenGL.so
 hello_world: CMakeFiles/hello_world.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable hello_world"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/salar/Desktop/Programming/Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable hello_world"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hello_world.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

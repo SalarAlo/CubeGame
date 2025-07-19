@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/hello_world.dir/link.d"
+  "CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o"
+  "CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o.d"
   "CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o"
   "CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o.d"
   "CMakeFiles/hello_world.dir/src/core/ShaderManager.cpp.o"
@@ -10,6 +12,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/hello_world.dir/src/core/ShaderWriter.cpp.o.d"
   "CMakeFiles/hello_world.dir/src/core/Utils.cpp.o"
   "CMakeFiles/hello_world.dir/src/core/Utils.cpp.o.d"
+  "CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o"
+  "CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o.d"
   "CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o"
   "CMakeFiles/hello_world.dir/src/core/VertexBuffer.cpp.o.d"
   "CMakeFiles/hello_world.dir/src/main.cpp.o"

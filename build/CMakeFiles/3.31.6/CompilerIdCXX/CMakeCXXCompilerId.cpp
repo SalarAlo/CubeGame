@@ -902,8 +902,7 @@ const char* info_language_extensions_default = "INFO"
 
 /*--------------------------------------------------------------------------*/
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
 	int require = 0;
 	require += info_compiler[argc];
 	require += info_platform[argc];

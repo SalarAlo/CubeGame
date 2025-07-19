@@ -9,18 +9,15 @@ ScreenWindow::ScreenWindow(
     const std::string& title)
     : m_Width(width)
     , m_Height(height)
-    , m_Title(title)
-{
+    , m_Title(title) {
 }
 
-ScreenWindow::~ScreenWindow()
-{
+ScreenWindow::~ScreenWindow() {
 	glfwDestroyWindow(m_Window);
 	glfwTerminate();
 }
 
-void ScreenWindow::Init()
-{
+void ScreenWindow::Init() {
 	glfwInit();
 	SetHints();
 
@@ -38,8 +35,7 @@ void ScreenWindow::Init()
 	glEnable(GL_DEPTH_TEST);
 }
 
-void ScreenWindow::SetHints()
-{
+void ScreenWindow::SetHints() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);

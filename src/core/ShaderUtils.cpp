@@ -7,8 +7,7 @@
 
 #include "Utils.h"
 
-ShaderSource getShaderSource(std::string path)
-{
+ShaderSource getShaderSource(std::string path) {
 	ShaderSource source;
 
 	std::ifstream file(path, std::ios::in);
@@ -28,8 +27,7 @@ ShaderSource getShaderSource(std::string path)
 	return source;
 }
 
-GLuint compileShader(GLenum type, const char* src)
-{
+GLuint compileShader(GLenum type, const char* src) {
 	GLuint shader = glCreateShader(type);
 	glShaderSource(shader, 1, &src, nullptr);
 	glCompileShader(shader);

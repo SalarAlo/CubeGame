@@ -2,15 +2,4 @@ BasedOnStyle: WebKit
 IndentWidth: 4       # Override if needed
 TabWidth: 4          # Matches your tab/space settings
 UseTab: ForIndentation # Or 'ForIndentation' if you prefer tabs
-
-BraceWrapping:
-  AfterFunction: false
-  AfterClass: false
-  AfterControlStatement: false
-  AfterEnum: false
-  AfterStruct: false
-  AfterNamespace: false
-  SplitEmptyFunction: false
-  SplitEmptyRecord: false
-  SplitEmptyNamespace: false
-
+BreakBeforeBraces: Attach

@@ -1,6 +1,12 @@
 [
 {
   "directory": "/home/salar/Desktop/Programming/Cpp/build",
+  "command": "/usr/bin/c++  -I/home/salar/Desktop/Programming/Cpp/include -I/home/salar/Desktop/Programming/Cpp/external/glad/include -I/home/salar/Desktop/Programming/Cpp/external/glfw/include  -o CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/IndexBuffer.cpp",
+  "file": "/home/salar/Desktop/Programming/Cpp/src/core/IndexBuffer.cpp",
+  "output": "CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o"
+},
+{
+  "directory": "/home/salar/Desktop/Programming/Cpp/build",
   "command": "/usr/bin/c++  -I/home/salar/Desktop/Programming/Cpp/include -I/home/salar/Desktop/Programming/Cpp/external/glad/include -I/home/salar/Desktop/Programming/Cpp/external/glfw/include  -o CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/ScreenWindow.cpp",
   "file": "/home/salar/Desktop/Programming/Cpp/src/core/ScreenWindow.cpp",
   "output": "CMakeFiles/hello_world.dir/src/core/ScreenWindow.cpp.o"
@@ -28,6 +34,12 @@
   "command": "/usr/bin/c++  -I/home/salar/Desktop/Programming/Cpp/include -I/home/salar/Desktop/Programming/Cpp/external/glad/include -I/home/salar/Desktop/Programming/Cpp/external/glfw/include  -o CMakeFiles/hello_world.dir/src/core/Utils.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/Utils.cpp",
   "file": "/home/salar/Desktop/Programming/Cpp/src/core/Utils.cpp",
   "output": "CMakeFiles/hello_world.dir/src/core/Utils.cpp.o"
+},
+{
+  "directory": "/home/salar/Desktop/Programming/Cpp/build",
+  "command": "/usr/bin/c++  -I/home/salar/Desktop/Programming/Cpp/include -I/home/salar/Desktop/Programming/Cpp/external/glad/include -I/home/salar/Desktop/Programming/Cpp/external/glfw/include  -o CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o -c /home/salar/Desktop/Programming/Cpp/src/core/VertexArray.cpp",
+  "file": "/home/salar/Desktop/Programming/Cpp/src/core/VertexArray.cpp",
+  "output": "CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o"
 },
 {
   "directory": "/home/salar/Desktop/Programming/Cpp/build",

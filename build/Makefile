@@ -175,6 +175,30 @@ update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f external/glfw/src/CMakeFiles/update_mappings.dir/build.make external/glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
+src/core/IndexBuffer.o: src/core/IndexBuffer.cpp.o
+.PHONY : src/core/IndexBuffer.o
+
+# target to build an object file
+src/core/IndexBuffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.o
+.PHONY : src/core/IndexBuffer.cpp.o
+
+src/core/IndexBuffer.i: src/core/IndexBuffer.cpp.i
+.PHONY : src/core/IndexBuffer.i
+
+# target to preprocess a source file
+src/core/IndexBuffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.i
+.PHONY : src/core/IndexBuffer.cpp.i
+
+src/core/IndexBuffer.s: src/core/IndexBuffer.cpp.s
+.PHONY : src/core/IndexBuffer.s
+
+# target to generate assembly for a file
+src/core/IndexBuffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/IndexBuffer.cpp.s
+.PHONY : src/core/IndexBuffer.cpp.s
+
 src/core/ScreenWindow.o: src/core/ScreenWindow.cpp.o
 .PHONY : src/core/ScreenWindow.o
 
@@ -295,6 +319,30 @@ src/core/Utils.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/Utils.cpp.s
 .PHONY : src/core/Utils.cpp.s
 
+src/core/VertexArray.o: src/core/VertexArray.cpp.o
+.PHONY : src/core/VertexArray.o
+
+# target to build an object file
+src/core/VertexArray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.o
+.PHONY : src/core/VertexArray.cpp.o
+
+src/core/VertexArray.i: src/core/VertexArray.cpp.i
+.PHONY : src/core/VertexArray.i
+
+# target to preprocess a source file
+src/core/VertexArray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.i
+.PHONY : src/core/VertexArray.cpp.i
+
+src/core/VertexArray.s: src/core/VertexArray.cpp.s
+.PHONY : src/core/VertexArray.s
+
+# target to generate assembly for a file
+src/core/VertexArray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/src/core/VertexArray.cpp.s
+.PHONY : src/core/VertexArray.cpp.s
+
 src/core/VertexBuffer.o: src/core/VertexBuffer.cpp.o
 .PHONY : src/core/VertexBuffer.o
 
@@ -356,6 +404,9 @@ help:
 	@echo "... glad"
 	@echo "... glfw"
 	@echo "... hello_world"
+	@echo "... src/core/IndexBuffer.o"
+	@echo "... src/core/IndexBuffer.i"
+	@echo "... src/core/IndexBuffer.s"
 	@echo "... src/core/ScreenWindow.o"
 	@echo "... src/core/ScreenWindow.i"
 	@echo "... src/core/ScreenWindow.s"
@@ -371,6 +422,9 @@ help:
 	@echo "... src/core/Utils.o"
 	@echo "... src/core/Utils.i"
 	@echo "... src/core/Utils.s"
+	@echo "... src/core/VertexArray.o"
+	@echo "... src/core/VertexArray.i"
+	@echo "... src/core/VertexArray.s"
 	@echo "... src/core/VertexBuffer.o"
 	@echo "... src/core/VertexBuffer.i"
 	@echo "... src/core/VertexBuffer.s"

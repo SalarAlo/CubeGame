@@ -1,20 +1,18 @@
 #include "Utils.h"
 
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 #include <cassert>
 #include <vector>
 
-void loadWithGlad()
-{
+void loadWithGlad() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		assert(false && "Failed loading function ptrs with glad");
 	}
 }
 
-std::vector<std::string> split(std::string s, const std::string& delimiter)
-{
+std::vector<std::string> split(std::string s, const std::string& delimiter) {
 	std::vector<std::string> tokens;
 	int pos = 0;
 	std::string token;
@@ -28,4 +26,15 @@ std::vector<std::string> split(std::string s, const std::string& delimiter)
 	tokens.push_back(s);
 
 	return tokens;
+}
+
+unsigned int getSizeOfType(GLenum type) {
+        switch(type) {
+        case GL_FLOAT:
+        case GL_UNSIGNED_INT:
+                return 4;
+        default:
+                assert("Undefined GLenum type. Cant get size of that type!");
+                return 0;
+        }
 }
