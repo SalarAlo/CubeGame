@@ -9,7 +9,7 @@ class ShaderManager;
 class ShaderWriter {
 public:
     ShaderWriter(ShaderManager& shaderManager) : m_ShaderManager(shaderManager) {};
-    void WriteUniformMatrix4(const std::string& name, glm::mat4& matrix);
+    void WriteUniformMatrix4(const std::string& name, const glm::mat4& matrix);
 private:
     ShaderManager& m_ShaderManager;
 };

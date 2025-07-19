@@ -7,7 +7,7 @@ public:
         void Init();
         void Bind();
         void Unbind();
-        void SetData(float vertices[], std::size_t size);
+        void SetData(const float vertices[], std::size_t size);
 
         inline bool IsBound() const { return m_Bound; } 
 

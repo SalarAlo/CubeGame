@@ -10,6 +10,7 @@
 #include <iostream>
 
 // own
+#include "Camera.h"
 #include "ScreenWindow.h"
 #include "ShaderManager.h"
 #include "ShaderUtils.h"
@@ -20,36 +21,40 @@
 #include "IndexBuffer.h"
 #include "VertexBufferLayout.h"
 
+
+static constexpr float vertices[] {
+        // positions           colors
+        -0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, // red
+        0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // green
+        0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // blue
+        -0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, // yellow
+        -0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 1.0f, // magenta
+        0.5f, -0.5f, 0.5f, 0.0f, 1.0f, 1.0f, // cyan
+        0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, // white
+        -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f // black
+};
+
+static constexpr unsigned int indices[] {
+        0, 1, 2, 2, 3, 0, // back
+        4, 5, 6, 6, 7, 4, // front
+        4, 5, 1, 1, 0, 4, // bottom
+        7, 6, 2, 2, 3, 7, // top
+        4, 0, 3, 3, 7, 4, // left
+        5, 1, 2, 2, 6, 5 // right
+};
+
+
 int main() {
-	ScreenWindow screenWindow(800, 600, "Rotating Cube");
+	ScreenWindow screenWindow(800, 800, "Rotating Cube");
 	screenWindow.Init();
+
+        Camera camera(45, screenWindow.GetAr(), glm::vec3(0, 0, -5));
 
 	ShaderManager shaderManager(SHADER_PATH);
 	shaderManager.CreateShaderProgram();
 	unsigned int shaderProgram = shaderManager.GetShaderProgramId();
 
 	ShaderWriter shaderWriter(shaderManager);
-
-	float vertices[] = {
-		// positions           colors
-		-0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, // red
-		0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // green
-		0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // blue
-		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 0.0f, // yellow
-		-0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 1.0f, // magenta
-		0.5f, -0.5f, 0.5f, 0.0f, 1.0f, 1.0f, // cyan
-		0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, // white
-		-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f // black
-	};
-
-	unsigned int indices[] = {
-		0, 1, 2, 2, 3, 0, // back
-		4, 5, 6, 6, 7, 4, // front
-		4, 5, 1, 1, 0, 4, // bottom
-		7, 6, 2, 2, 3, 7, // top
-		4, 0, 3, 3, 7, 4, // left
-		5, 1, 2, 2, 6, 5 // right
-	};
 
 	VertexBuffer vertexBuffer;
 	vertexBuffer.Init();
@@ -83,9 +88,6 @@ int main() {
 	std::string viewMatrixName { "view" };
 	std::string projMatrixName { "projection" };
 
-	// Projection matrix (perspective)
-	glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.f / 600.f, 0.1f, 100.0f);
-
 	while (!screenWindow.ShouldClose()) {
 		glfwPollEvents();
 
@@ -97,21 +99,19 @@ int main() {
 		// Rotate over time
 		float time = (float)glfwGetTime();
 		glm::mat4 model = glm::rotate(glm::mat4(1.0f), time, glm::vec3(0.5f, 1.0f, 0.0f));
-		glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
 
 		shaderWriter.WriteUniformMatrix4(modelMatrixName, model);
-		shaderWriter.WriteUniformMatrix4(viewMatrixName, view);
-		shaderWriter.WriteUniformMatrix4(projMatrixName, projection);
+		shaderWriter.WriteUniformMatrix4(viewMatrixName, camera.GetView());
+		shaderWriter.WriteUniformMatrix4(projMatrixName, camera.GetProjection());
 
                 vertexArray.Bind();
 
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, indexBuffer.GetElementCount(), GL_UNSIGNED_INT, 0);
 
                 vertexArray.Unbind();
 
 		glfwSwapBuffers(screenWindow.GetGLFWWindow());
 	}
-
 
 	return 0;
 }

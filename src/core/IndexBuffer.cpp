@@ -21,8 +21,9 @@ void IndexBuffer::Unbind() {
         m_Bound = false;
 }
 
-void IndexBuffer::FillData(unsigned int indices[], std::size_t size) {
+void IndexBuffer::FillData(const unsigned int indices[], std::size_t size) {
 	assert(m_Initiliased && m_Bound && "Index Buffer not initiliased or already unbound");
+        m_ElementCount = static_cast<unsigned int>(size) / sizeof(unsigned int);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, indices, GL_STATIC_DRAW);
 }
 

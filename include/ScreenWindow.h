@@ -10,19 +10,21 @@
 
 class ScreenWindow {
 public:
-    ScreenWindow(unsigned int width, unsigned int height, const std::string &title);
-    ~ScreenWindow();
-    void Init();
+        ScreenWindow(unsigned int width, unsigned int height, const std::string &title);
+        ~ScreenWindow();
+        void Init();
 
-    inline GLFWwindow* GetGLFWWindow() const { return m_Window; };
-    inline bool ShouldClose() { return glfwWindowShouldClose(m_Window); }
+
+        inline GLFWwindow* GetGLFWWindow() const { return m_Window; }
+        inline bool ShouldClose() { return glfwWindowShouldClose(m_Window); }
+        inline int GetAr() const { return m_Width / m_Height; }
 
 private:
-    void SetHints();
+        void SetHints();
 
 private:
-    GLFWwindow* m_Window;   
-    unsigned int m_Width;
-    unsigned int m_Height;
-    std::string m_Title;
+        GLFWwindow* m_Window;   
+        unsigned int m_Width;
+        unsigned int m_Height;
+        std::string m_Title;
 };
