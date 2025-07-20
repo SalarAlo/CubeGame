@@ -40,7 +40,7 @@ void VertexArray::ConnectLayoutToBuffer(VertexBuffer& buffer, const VertexBuffer
                         i,
                         attrib.ElementAmount, 
                         attrib.Type, 
-                        attrib.Normalized, 
+                        attrib.Normalized ? GL_TRUE : GL_FALSE, 
                         elementSize, 
                         (const void*)(uintptr_t)stride
                 );

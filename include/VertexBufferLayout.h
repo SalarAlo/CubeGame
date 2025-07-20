@@ -8,7 +8,7 @@
 
 struct VertexBufferAttribute {
         GLenum Type;
-        GLboolean Normalized;
+        bool Normalized;
         unsigned int ElementAmount;
 };
 
@@ -34,7 +34,7 @@ template<>
 inline void VertexBufferLayout::Push<float>(bool normalized, unsigned int ElementAmount) {
         VertexBufferAttribute attributePointer { 
                 GL_FLOAT, 
-                normalized ? GL_TRUE : GL_FALSE, 
+                normalized, 
                 ElementAmount 
         };
 

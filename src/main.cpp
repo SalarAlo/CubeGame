@@ -11,6 +11,7 @@
 
 // own
 #include "Camera.h"
+#include "Face.h"
 #include "ScreenWindow.h"
 #include "ShaderManager.h"
 #include "ShaderUtils.h"
@@ -96,7 +97,6 @@ int main() {
 
 		shaderManager.UseShaderProgram();
 
-		// Rotate over time
 		float time = (float)glfwGetTime();
 		glm::mat4 model = glm::rotate(glm::mat4(1.0f), time, glm::vec3(0.5f, 1.0f, 0.0f));
 

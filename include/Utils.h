@@ -7,3 +7,5 @@
 void loadWithGlad();
 std::vector<std::string> split(std::string s, const std::string& delimiter);
 unsigned int getSizeOfType(GLenum type);
+int positionToIndex(glm::vec3 position);
+glm::vec3 indexToPosition(int idx);

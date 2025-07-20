@@ -38,3 +38,14 @@ unsigned int getSizeOfType(GLenum type) {
                 return 0;
         }
 }
+
+int positionToIndex(glm::vec3 position) {
+        return position.x + position.z * CHUNK_SIZE + position.y * CHUNK_PLANE;
+}
+
+glm::vec3 indexToPosition(int idx) {
+        int x = idx % CHUNK_SIZE;
+        int y = idx / CHUNK_PLANE;
+        int z = (idx % CHUNK_PLANE) / CHUNK_SIZE;
+}
+
