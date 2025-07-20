@@ -8,9 +8,11 @@
 // standard
 #include <filesystem>
 #include <iostream>
+#include <vector>
 
 // own
 #include "Camera.h"
+#include "ChunkBuilder.h"
 #include "Face.h"
 #include "ScreenWindow.h"
 #include "ShaderManager.h"
@@ -19,10 +21,9 @@
 #include "Utils.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
-#include "IndexBuffer.h"
 #include "VertexBufferLayout.h"
 
-
+/*
 static constexpr float vertices[] {
         // positions           colors
         -0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, // red
@@ -34,6 +35,7 @@ static constexpr float vertices[] {
         0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, // white
         -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f // black
 };
+*/
 
 static constexpr unsigned int indices[] {
         0, 1, 2, 2, 3, 0, // back
@@ -46,10 +48,52 @@ static constexpr unsigned int indices[] {
 
 
 int main() {
+        ChunkBuilder chunkBuilder(glm::ivec2(0, 0));
+
+        // Define pyramid height
+        const int height = 3;
+
+        for (int y = 0; y < height; ++y) {
+            int layerSize = height - y; // pyramid shrinks each layer
+
+            for (int x = 0; x < layerSize; ++x) {
+                for (int z = 0; z < layerSize; ++z) {
+                    glm::vec3 pos(x, y, z);
+
+                    // Add faces for the "cube" at this position
+                    // We only add visible faces for the outside of the pyramid
+
+                    // Add bottom face only for base layer
+                    if (y == 0)
+                        chunkBuilder.AddFace(Direction::Bottom, pos);
+
+                    // Add top face if this is the top of the pyramid (highest layer)
+                    if (y == height - 1)
+                        chunkBuilder.AddFace(Direction::Top, pos);
+
+                    // Add left face if at left boundary
+                    if (x == 0)
+                        chunkBuilder.AddFace(Direction::Left, pos);
+
+                    // Add right face if at right boundary
+                    if (x == layerSize - 1)
+                        chunkBuilder.AddFace(Direction::Right, pos);
+
+                    // Add back face if at back boundary
+                    if (z == 0)
+                        chunkBuilder.AddFace(Direction::Back, pos);
+
+                    // Add forward face if at front boundary
+                    if (z == layerSize - 1)
+                        chunkBuilder.AddFace(Direction::Forward, pos);
+                }
+            }
+        }
+
 	ScreenWindow screenWindow(800, 800, "Rotating Cube");
 	screenWindow.Init();
 
-        Camera camera(45, screenWindow.GetAr(), glm::vec3(0, 0, -5));
+        Camera camera(45, screenWindow.GetAr(), glm::vec3(0, 0, -15));
 
 	ShaderManager shaderManager(SHADER_PATH);
 	shaderManager.CreateShaderProgram();
@@ -60,28 +104,21 @@ int main() {
 	VertexBuffer vertexBuffer;
 	vertexBuffer.Init();
 
-        IndexBuffer indexBuffer;
-        indexBuffer.Init();
-
         VertexArray vertexArray;
         vertexArray.Init();
 
         vertexArray.Bind();
 
+        std::vector<float> vertices = chunkBuilder.BuildChunkElementBufferData();
 	vertexBuffer.Bind();
-	vertexBuffer.SetData(vertices, sizeof(vertices));
-
-        indexBuffer.Bind();
-        indexBuffer.FillData(indices, sizeof(indices));
+	vertexBuffer.SetData(vertices.data(), sizeof(vertices[0]) * vertices.size());
 
         VertexBufferLayout layout;
-        layout.Push<float>(false, 3);
         layout.Push<float>(false, 3);
  
         vertexArray.ConnectLayoutToBuffer(vertexBuffer, layout);
 
         vertexArray.Unbind();
-        indexBuffer.Unbind();
         vertexBuffer.Unbind();
 
 	// Matrices location
@@ -106,7 +143,7 @@ int main() {
 
                 vertexArray.Bind();
 
-		glDrawElements(GL_TRIANGLES, indexBuffer.GetElementCount(), GL_UNSIGNED_INT, 0);
+                        glDrawArrays(GL_TRIANGLES, 0, vertexBuffer.GetVerticesAmount());
 
                 vertexArray.Unbind();
 

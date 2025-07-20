@@ -28,6 +28,7 @@ void VertexBuffer::Unbind() {
 void VertexBuffer::SetData(const float vertices[], std::size_t size) {
 	assert(m_Initialised && m_Bound && "VBO hasnt been initialised or is unbound");
 	glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
+        m_VertexAmount = static_cast<unsigned int>(size);
 }
 
 VertexBuffer::~VertexBuffer() {

@@ -6,6 +6,8 @@
 #include <cassert>
 #include <vector>
 
+#include "Config.h"
+
 void loadWithGlad() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		assert(false && "Failed loading function ptrs with glad");
@@ -44,8 +46,10 @@ int positionToIndex(glm::vec3 position) {
 }
 
 glm::vec3 indexToPosition(int idx) {
-        int x = idx % CHUNK_SIZE;
-        int y = idx / CHUNK_PLANE;
-        int z = (idx % CHUNK_PLANE) / CHUNK_SIZE;
+        glm::vec3 out;
+        out.x = idx % CHUNK_SIZE;
+        out.y = idx / CHUNK_PLANE;
+        out.z = (idx % CHUNK_PLANE) / CHUNK_SIZE;
+        return out; 
 }
 

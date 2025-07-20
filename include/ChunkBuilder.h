@@ -11,7 +11,7 @@ class ChunkBuilder {
 public:
         ChunkBuilder(glm::ivec2 chunkPosition) : m_ChunkPosition(chunkPosition) { }
         void AddFace(Direction direction, glm::vec3 position);
-        std::vector<unsigned int> BuildChunkElementBufferData() const;
+        std::vector<float> BuildChunkElementBufferData() const;
 private:
         glm::ivec2 m_ChunkPosition {};
         std::vector<Face> m_Faces {};
