@@ -22,6 +22,10 @@ set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 add_subdirectory(external/glfw)
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
 
+# IMGUI
+add_subdirectory(external/imgui)
+target_link_libraries(${PROJECT_NAME} PRIVATE imgui)
+
 # require packages
 find_package(OpenGL REQUIRED)
 find_package(glm REQUIRED)
@@ -30,6 +34,7 @@ find_package(glm REQUIRED)
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_HEADER_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE external/glad/include)
 target_include_directories(${PROJECT_NAME} PRIVATE external/glfw/include)
+target_include_directories(${PROJECT_NAME} PRIVATE external/imgui)
 target_include_directories(${PROJECT_NAME} PRIVATE ${GLM_INCLUDE_DIRS})
 
 # link library

@@ -5,6 +5,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <imgui.h>
+#include <backends/imgui_impl_opengl3.h>
+#include <backends/imgui_impl_glfw.h>
+
 // standard
 #include <filesystem>
 #include <iostream>
@@ -50,48 +54,20 @@ static constexpr unsigned int indices[] {
 int main() {
         ChunkBuilder chunkBuilder(glm::ivec2(0, 0));
 
-        // Define pyramid height
-        const int height = 3;
-
-        for (int y = 0; y < height; ++y) {
-            int layerSize = height - y; // pyramid shrinks each layer
-
-            for (int x = 0; x < layerSize; ++x) {
-                for (int z = 0; z < layerSize; ++z) {
-                    glm::vec3 pos(x, y, z);
-
-                    // Add faces for the "cube" at this position
-                    // We only add visible faces for the outside of the pyramid
-
-                    // Add bottom face only for base layer
-                    if (y == 0)
-                        chunkBuilder.AddFace(Direction::Bottom, pos);
-
-                    // Add top face if this is the top of the pyramid (highest layer)
-                    if (y == height - 1)
-                        chunkBuilder.AddFace(Direction::Top, pos);
-
-                    // Add left face if at left boundary
-                    if (x == 0)
-                        chunkBuilder.AddFace(Direction::Left, pos);
-
-                    // Add right face if at right boundary
-                    if (x == layerSize - 1)
-                        chunkBuilder.AddFace(Direction::Right, pos);
-
-                    // Add back face if at back boundary
-                    if (z == 0)
-                        chunkBuilder.AddFace(Direction::Back, pos);
-
-                    // Add forward face if at front boundary
-                    if (z == layerSize - 1)
-                        chunkBuilder.AddFace(Direction::Forward, pos);
-                }
-            }
-        }
-
 	ScreenWindow screenWindow(800, 800, "Rotating Cube");
 	screenWindow.Init();
+
+        // Glad must be initialized here (likely done in your ScreenWindow::Init)
+        // Initialize ImGui AFTER OpenGL context creation
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGuiIO& io = ImGui::GetIO(); (void)io;
+        ImGui::StyleColorsDark();
+
+        // Setup ImGui bindings
+        GLFWwindow* window = screenWindow.GetGLFWWindow();
+        ImGui_ImplGlfw_InitForOpenGL(window, true);
+        ImGui_ImplOpenGL3_Init("#version 330");
 
         Camera camera(45, screenWindow.GetAr(), glm::vec3(0, 0, -15));
 
@@ -129,8 +105,19 @@ int main() {
 	while (!screenWindow.ShouldClose()) {
 		glfwPollEvents();
 
+                // Start ImGui frame
+                ImGui_ImplOpenGL3_NewFrame();
+                ImGui_ImplGlfw_NewFrame();
+                ImGui::NewFrame();
+
+                // ImGui UI
+                ImGui::Begin("My First ImGui Window");
+                ImGui::Text("Hello, world!");
+                ImGui::End();
+
 		glClearColor(0.1f, 0.12f, 0.15f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
 		shaderManager.UseShaderProgram();
 
@@ -143,9 +130,12 @@ int main() {
 
                 vertexArray.Bind();
 
-                        glDrawArrays(GL_TRIANGLES, 0, vertexBuffer.GetVerticesAmount());
+                glDrawArrays(GL_TRIANGLES, 0, vertexBuffer.GetVerticesAmount());
 
                 vertexArray.Unbind();
+
+                ImGui::Render();
+                ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(screenWindow.GetGLFWWindow());
 	}
