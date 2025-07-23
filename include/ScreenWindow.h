@@ -18,6 +18,8 @@ public:
         inline GLFWwindow* GetGLFWWindow() const { return m_Window; }
         inline bool ShouldClose() { return glfwWindowShouldClose(m_Window); }
         inline int GetAr() const { return m_Width / m_Height; }
+        inline unsigned int GetWidth() const { return m_Width; }
+        inline unsigned int GetHeight() const { return m_Height; }
 
 private:
         void SetHints();
