@@ -30,7 +30,7 @@
 int main() {
         ChunkBuilder chunkBuilder(glm::ivec2(0, 0));
 
-        chunkBuilder.AddCube(Cube { glm::vec3(0, 0, 0), MeshColor::Yellow });
+        chunkBuilder.AddCube(Cube { glm::vec3(0, 0, 0), MeshColor::Cyan });
 
 	ScreenWindow screenWindow(800, 800, "Rotating Cube");
 	screenWindow.Init();
