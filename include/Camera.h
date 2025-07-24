@@ -14,14 +14,14 @@ public:
         inline void CalculateProjection();
 
 private:
-        float m_Fov;
-        float m_Ar;
+        float m_Fov { };
+        float m_Ar { };
 
-        glm::vec3 m_Position;
-        glm::vec3 m_Right;
-        glm::vec3 m_Forward;
-        glm::vec3 m_Up;
+        glm::vec3 m_Position {};
+        glm::vec3 m_Right {};
+        glm::vec3 m_Forward {};
+        glm::vec3 m_Up {};
 
-        glm::mat4 m_ProjectionMx;
-        glm::mat4 m_ViewMx;
+        glm::mat4 m_ProjectionMx {};
+        glm::mat4 m_ViewMx {};
 };

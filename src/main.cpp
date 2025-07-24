@@ -14,6 +14,8 @@
 // own
 #include "Camera.h"
 #include "ChunkBuilder.h"
+#include "Constants.h"
+#include "Cube.h"
 #include "Face.h"
 #include "ImGuiView.h"
 #include "ScreenWindow.h"
@@ -27,6 +29,8 @@
 
 int main() {
         ChunkBuilder chunkBuilder(glm::ivec2(0, 0));
+
+        chunkBuilder.AddCube(Cube { glm::vec3(0, 0, 0), MeshColor::Blue });
 
 	ScreenWindow screenWindow(800, 800, "Rotating Cube");
 	screenWindow.Init();
@@ -50,10 +54,21 @@ int main() {
         vertexArray.Bind();
 
         std::vector<float> vertices = chunkBuilder.BuildChunkElementBufferData();
+
+        ImGuiView::getInstance().SetOnCompileCallback([vertices](){
+                int verticesCount = vertices.size();
+                for(int i {}; i < verticesCount; i++) {
+                        std::cout << vertices[i];
+                        std::cout << (((i + 1) % (VALUES_PER_VERTEX) == 0) ? "\n" : ", ");
+                        std::cout << std::flush;
+                }
+        });
+
 	vertexBuffer.Bind();
 	vertexBuffer.SetData(vertices.data(), sizeof(vertices[0]) * vertices.size());
 
         VertexBufferLayout layout;
+        layout.Push<float>(false, 3);
         layout.Push<float>(false, 3);
  
         vertexArray.ConnectLayoutToBuffer(vertexBuffer, layout);
@@ -78,7 +93,7 @@ int main() {
 		shaderManager.UseShaderProgram();
 
 		float time = (float)glfwGetTime();
-		glm::mat4 model = glm::rotate(glm::mat4(1.0f), time, glm::vec3(0.5f, 1.0f, 0.0f));
+		glm::mat4 model = glm::rotate(glm::mat4(1.0f), time, glm::vec3(0, 1.0f, 0.0f));
 
 		shaderWriter.WriteUniformMatrix4(modelMatrixName, model);
 		shaderWriter.WriteUniformMatrix4(viewMatrixName, camera.GetView());

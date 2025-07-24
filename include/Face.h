@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Constants.h"
+#include "Cube.h"
 #include <cstdint>
 #include <array>
 
@@ -14,8 +15,9 @@ enum class Direction : std::int8_t {
 };
 
 struct Face {
-        short Position;
+        glm::vec3 Position;
         Direction FaceDirection;
+        MeshColor Color;
 };
 
 constexpr float VERTICES[] = {
@@ -47,9 +49,9 @@ static constexpr std::array<float, 18> extractPositions(const unsigned int* indi
     return facePositions;
 }
 
-using FaceVertices = std::array<float, VALUES_PER_FACE>;
+using FacePositionVertices = std::array<float, POSITIONAL_VALUES_PER_FACE>;
 
-constexpr std::array<FaceVertices, 6> DIRECTION_TO_VERTICES = {
+constexpr std::array<FacePositionVertices, 6> DIRECTION_TO_VERTICES = {
     extractPositions(INDICES_TOP),
     extractPositions(INDICES_BOTTOM),
     extractPositions(INDICES_RIGHT),

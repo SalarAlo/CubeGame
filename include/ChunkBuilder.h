@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Cube.h"
 #include "Face.h"
 
 #include <array>
@@ -10,7 +11,8 @@
 class ChunkBuilder {
 public:
         ChunkBuilder(glm::ivec2 chunkPosition) : m_ChunkPosition(chunkPosition) { }
-        void AddFace(Direction direction, glm::vec3 position);
+        void AddFace(Face face);
+        void AddCube(const Cube& cube);
         std::vector<float> BuildChunkElementBufferData() const;
 private:
         glm::ivec2 m_ChunkPosition {};

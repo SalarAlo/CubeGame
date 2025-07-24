@@ -4,10 +4,24 @@
 #include <GLFW/glfw3.h>
 
 #include <cassert>
+#include <regex>
 #include <vector>
 
 #include "Config.h"
+#include "Face.h"
 
+glm::vec3 getRgbForColor(MeshColor color) {
+    switch (color) {
+        case Red:     return {1.0f, 0.0f, 0.0f};
+        case Green:   return {0.0f, 1.0f, 0.0f};
+        case Blue:    return {0.0f, 0.0f, 1.0f};
+        case Yellow:  return {1.0f, 1.0f, 0.0f};
+        case Cyan:    return {0.0f, 1.0f, 1.0f};
+        case Magenta: return {1.0f, 0.0f, 1.0f};
+        case White:   return {1.0f, 1.0f, 1.0f};
+        default:      return {0.0f, 0.0f, 0.0f};  // fallback: black
+    }
+}
 void loadWithGlad() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		assert(false && "Failed loading function ptrs with glad");
@@ -41,15 +55,22 @@ unsigned int getSizeOfType(GLenum type) {
         }
 }
 
-int positionToIndex(glm::vec3 position) {
-        return position.x + position.z * CHUNK_SIZE + position.y * CHUNK_PLANE;
+std::string directionToString(Direction direction) {
+        switch(direction) {
+        case Direction::Top:
+                return std::string { "Top" };
+        case Direction::Bottom:
+                return std::string { "Bottom" };
+        case Direction::Right:
+                return std::string { "Right" };
+        case Direction::Left:
+                return std::string { "Left" };
+        case Direction::Forward:
+                return std::string { "Forward" };
+        case Direction::Back:
+                return std::string { "Back" };
+        default:
+                assert(false && "Unhandled case for direction to string conversion");
+                return std::string { "" };
+        }
 }
-
-glm::vec3 indexToPosition(int idx) {
-        glm::vec3 out;
-        out.x = idx % CHUNK_SIZE;
-        out.y = idx / CHUNK_PLANE;
-        out.z = (idx % CHUNK_PLANE) / CHUNK_SIZE;
-        return out; 
-}
-
