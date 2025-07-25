@@ -26,6 +26,7 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
+#include "vox/Lexer.h"
 
 int main() {
         ChunkBuilder chunkBuilder(glm::ivec2(0, 0));
@@ -56,11 +57,10 @@ int main() {
         std::vector<float> vertices = chunkBuilder.BuildChunkElementBufferData();
 
         ImGuiView::getInstance().SetOnCompileCallback([vertices](){
-                int verticesCount = vertices.size();
-                for(int i {}; i < verticesCount; i++) {
-                        std::cout << vertices[i];
-                        std::cout << (((i + 1) % (VALUES_PER_VERTEX) == 0) ? "\n" : ", ");
-                        std::cout << std::flush;
+                Lexer lexer { ImGuiView::getInstance().GetEditorText() };
+                const auto& tokens { lexer.StringToTokens() };
+                for(const auto& token : tokens) {
+                        std::cout << tokenTypeToString(token.Type) << "\n";
                 }
         });
 
@@ -76,7 +76,6 @@ int main() {
         vertexArray.Unbind();
         vertexBuffer.Unbind();
 
-	// Matrices location
 	std::string modelMatrixName { "model" };
 	std::string viewMatrixName { "view" };
 	std::string projMatrixName { "projection" };
