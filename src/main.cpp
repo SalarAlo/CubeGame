@@ -10,14 +10,17 @@
 #include <filesystem>
 #include <iostream>
 #include <vector>
+#include <string>
 
 // own
 #include "Camera.h"
 #include "ChunkBuilder.h"
+#include "Config.h"
 #include "Constants.h"
 #include "Cube.h"
 #include "Face.h"
 #include "ImGuiView.h"
+#include "LuaExecutor.h"
 #include "ScreenWindow.h"
 #include "ShaderManager.h"
 #include "ShaderUtils.h"
@@ -26,7 +29,7 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
-#include "vox/Lexer.h"
+
 
 int main() {
         ChunkBuilder chunkBuilder(glm::ivec2(0, 0));
@@ -36,7 +39,7 @@ int main() {
 	ScreenWindow screenWindow(800, 800, "Rotating Cube");
 	screenWindow.Init();
 
-        ImGuiView::getInstance().Init(screenWindow);
+        ImGuiView::GetInstance().Init(screenWindow);
 
         Camera camera(45, screenWindow.GetAr(), glm::vec3(0, 0, -15));
 
@@ -56,11 +59,20 @@ int main() {
 
         std::vector<float> vertices = chunkBuilder.BuildChunkElementBufferData();
 
-        ImGuiView::getInstance().SetOnCompileCallback([vertices](){
-                Lexer lexer { ImGuiView::getInstance().GetEditorText() };
-                const auto& tokens { lexer.StringToTokens() };
-                for(const auto& token : tokens) {
-                        std::cout << tokenTypeToString(token.Type) << "\n";
+        ImGuiView::GetInstance().SetOnCompileCallback([](){
+                const auto& sourceCode { ImGuiView::GetInstance().GetEditorText() };
+                LuaExecutor::GetInstance().SetSourceCode(sourceCode);
+                
+                for(int y = 0; y < CHUNK_HEIGHT; y++) {
+                        for(int z = 0; z < CHUNK_SIZE; z++) {
+                                for(int x = 0; x < CHUNK_SIZE; x++) {
+                                        glm::vec3 position { x, y, z };
+                                        auto color = LuaExecutor::GetInstance().GetColor(position);
+                                        if(color )
+                                        Cube cube { position,  };
+                                        chunkBuilder.AddCube()
+                                }
+                        }
                 }
         });
 
@@ -83,7 +95,7 @@ int main() {
 	while (!screenWindow.ShouldClose()) {
 		glfwPollEvents();
 
-                ImGuiView::getInstance().SetupUI();
+                ImGuiView::GetInstance().SetupUI();
 
 		glClearColor(0.1f, 0.12f, 0.15f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -104,7 +116,7 @@ int main() {
 
                 vertexArray.Unbind();
 
-                ImGuiView::getInstance().DrawUI();
+                ImGuiView::GetInstance().DrawUI();
 
 		glfwSwapBuffers(screenWindow.GetGLFWWindow());
 	}

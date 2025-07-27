@@ -9,7 +9,7 @@ constexpr unsigned int EDITOR_BUFFER_MAX_SIZE { 1024 * 16 };
 
 class ImGuiView {
 public:
-        static ImGuiView& getInstance();
+        static ImGuiView& GetInstance();
 
         void Init(ScreenWindow& window);
         void SetupUI();

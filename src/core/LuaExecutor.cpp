@@ -1,0 +1,77 @@
+#include "LuaExecutor.h"
+#include <iostream>
+#include <cassert>
+
+LuaExecutor& LuaExecutor::GetInstance() {
+        static LuaExecutor instance;
+        return instance;
+}
+
+LuaExecutor::LuaExecutor() {
+        m_State = luaL_newstate();
+        luaL_openlibs(m_State);
+}
+
+LuaExecutor::~LuaExecutor() {
+        if (m_State) {
+                lua_close(m_State);
+                m_State = nullptr;
+        }
+}
+
+bool LuaExecutor::LoadFunction(const std::string& fullCode) {
+        if (luaL_loadstring(m_State, fullCode.c_str()) != LUA_OK) {
+                std::cerr << "Lua load error: " << lua_tostring(m_State, -1) << std::endl;
+                lua_pop(m_State, 1);
+                return false;
+        }
+
+        // Run the loaded chunk (this defines the function)
+        if (lua_pcall(m_State, 0, 0, 0) != LUA_OK) {
+                std::cerr << "Lua runtime error: " << lua_tostring(m_State, -1) << std::endl;
+                lua_pop(m_State, 1);
+                return false;
+        }
+
+        return true;
+}
+
+void LuaExecutor::SetSourceCode(const std::string& sourceCode) {
+        std::string fullCode = s_LuaFnStart + sourceCode + s_LuaFnEnd;
+
+        m_FunctionLoaded = LoadFunction(fullCode);
+}
+
+int LuaExecutor::GetColor(glm::vec3 position) {
+        if (!m_FunctionLoaded) {
+                std::cerr << "Lua function not loaded." << std::endl;
+                return -1;
+        }
+
+        lua_getglobal(m_State, s_LuaFnName.c_str());
+        if (!lua_isfunction(m_State, -1)) {
+                std::cerr << "Function '" << s_LuaFnName << "' not found." << std::endl;
+                lua_pop(m_State, 1);
+                return -1;
+        }
+
+        lua_pushnumber(m_State, position.x);
+        lua_pushnumber(m_State, position.y);
+        lua_pushnumber(m_State, position.z);
+
+        if (lua_pcall(m_State, 3, 1, 0) != LUA_OK) {
+                std::cerr << "Error calling Lua function: " << lua_tostring(m_State, -1) << std::endl;
+                lua_pop(m_State, 1);
+                return -1;
+        }
+
+        if (!lua_isnumber(m_State, -1)) {
+                std::cerr << "Unexpected return type from Lua function." << std::endl;
+                lua_pop(m_State, 1);
+                return -1;
+        }
+
+        int result = static_cast<int>(lua_tonumber(m_State, -1));
+        lua_pop(m_State, 1);
+        return result;
+}
