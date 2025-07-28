@@ -2,11 +2,6 @@
 #include <iostream>
 #include <cassert>
 
-LuaExecutor& LuaExecutor::GetInstance() {
-        static LuaExecutor instance;
-        return instance;
-}
-
 LuaExecutor::LuaExecutor() {
         m_State = luaL_newstate();
         luaL_openlibs(m_State);
@@ -26,7 +21,6 @@ bool LuaExecutor::LoadFunction(const std::string& fullCode) {
                 return false;
         }
 
-        // Run the loaded chunk (this defines the function)
         if (lua_pcall(m_State, 0, 0, 0) != LUA_OK) {
                 std::cerr << "Lua runtime error: " << lua_tostring(m_State, -1) << std::endl;
                 lua_pop(m_State, 1);
@@ -42,18 +36,25 @@ void LuaExecutor::SetSourceCode(const std::string& sourceCode) {
         m_FunctionLoaded = LoadFunction(fullCode);
 }
 
-int LuaExecutor::GetColor(glm::vec3 position) {
+bool LuaExecutor::IsFunctionReadyForUse() {
         if (!m_FunctionLoaded) {
                 std::cerr << "Lua function not loaded." << std::endl;
-                return -1;
+                return false;
         }
 
         lua_getglobal(m_State, s_LuaFnName.c_str());
+
         if (!lua_isfunction(m_State, -1)) {
                 std::cerr << "Function '" << s_LuaFnName << "' not found." << std::endl;
                 lua_pop(m_State, 1);
-                return -1;
+                return false;
         }
+
+        return true;
+}
+
+int LuaExecutor::GetColor(glm::vec3 position) {
+        if(!IsFunctionReadyForUse()) return -1;
 
         lua_pushnumber(m_State, position.x);
         lua_pushnumber(m_State, position.y);

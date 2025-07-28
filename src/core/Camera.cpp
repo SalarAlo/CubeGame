@@ -1,17 +1,26 @@
 #include "Camera.h"
 
 #include <glm/ext/matrix_transform.hpp>
+#include <glm/geometric.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-Camera::Camera(float fov, float ar, glm::vec3 position) :
-        m_Position(position), 
-        m_Fov(fov), m_Ar(ar),
-        m_Forward(0, 0, 1), m_Right(1, 0, 0), m_Up(0, 1, 0)
-{ 
+#include <iostream>
+
+void Camera::Init(float fov, float ar, glm::vec3 position, glm::vec3 forward) {
+        m_Position = position;
+        m_Fov = fov;
+        m_Ar = ar;
+
+        const glm::vec3 worldUp { 0, 1, 0 };
+
+        m_Forward = forward;
+        m_Right = glm::normalize(glm::cross(worldUp, forward));
+        m_Up = glm::normalize(glm::cross(m_Forward, m_Right));
+
         CalculateView();
         CalculateProjection();
-};
+}
 
 void Camera::CalculateView() {
 	m_ViewMx = glm::lookAt(m_Position, m_Position + m_Forward, m_Up);

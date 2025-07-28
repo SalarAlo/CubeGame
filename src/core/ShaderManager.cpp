@@ -4,8 +4,8 @@
 
 #include "ShaderUtils.h"
 
-ShaderManager::ShaderManager(const std::string& path)
-    : m_ShaderSource(getShaderSource(path)) {
+void ShaderManager::Init(const std::string& path) {
+        m_ShaderSource = getShaderSource(path);
 }
 
 ShaderManager::~ShaderManager() {

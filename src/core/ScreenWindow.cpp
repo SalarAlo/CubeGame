@@ -3,6 +3,10 @@
 
 #include <cassert>
 
+static constexpr int WINDOW_HEIGHT { 1000 };
+static constexpr int WINDOW_WIDTH { 1000 };
+static const std::string WINDOW_TITLE { "Replicube" };
+
 ScreenWindow::ScreenWindow(
     unsigned int width,
     unsigned int height,
@@ -15,6 +19,12 @@ ScreenWindow::ScreenWindow(
 ScreenWindow::~ScreenWindow() {
 	glfwDestroyWindow(m_Window);
 	glfwTerminate();
+}
+
+
+ScreenWindow& ScreenWindow::GetInstance() {
+        static ScreenWindow window { WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE };
+        return window;
 }
 
 void ScreenWindow::Init() {

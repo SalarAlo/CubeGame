@@ -9,18 +9,19 @@
 class ShaderManager {
 friend ShaderWriter;
 public:
-    ShaderManager(const std::string& path);
+        ShaderManager() = default;
+        void Init(const std::string& path);
 
-    void CreateShaderProgram();
-    void UseShaderProgram() const;
-    ~ShaderManager();
+        void CreateShaderProgram();
+        void UseShaderProgram() const;
+        ~ShaderManager();
     
-    inline unsigned int GetShaderProgramId() const { return m_ShaderProgram; }
+        inline unsigned int GetShaderProgramId() const { return m_ShaderProgram; }
 private:
-    void CheckShaderProgramErrors() const;
+        void CheckShaderProgramErrors() const;
 
 private:
-    ShaderSource m_ShaderSource;
-    unsigned int m_ShaderProgram;
+        ShaderSource m_ShaderSource {};
+        unsigned int m_ShaderProgram { 0 };
 };
 

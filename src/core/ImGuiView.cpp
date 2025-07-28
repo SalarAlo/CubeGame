@@ -1,4 +1,5 @@
 #include "ImGuiView.h"
+#include "ScreenWindow.h"
 
 #include <functional>
 #include <iostream>
@@ -13,15 +14,16 @@ ImGuiView& ImGuiView::GetInstance() {
         return imGuiView;
 }
 
-void ImGuiView::Init(ScreenWindow& window) {
+void ImGuiView::Init() {
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGuiIO& io = ImGui::GetIO(); (void)io;
         ImGui::StyleColorsDark();
 
-        GLFWwindow* rawWindow = window.GetGLFWWindow();
-        m_WindowWidth = window.GetWidth();
-        m_WindowHeight = window.GetHeight();
+        
+        GLFWwindow* rawWindow = ScreenWindow::GetInstance().GetGLFWWindow();
+        m_WindowWidth = ScreenWindow::GetInstance().GetWidth();
+        m_WindowHeight = ScreenWindow::GetInstance().GetHeight();
 
         ImGui_ImplGlfw_InitForOpenGL(rawWindow, true);
         ImGui_ImplOpenGL3_Init("#version 330");

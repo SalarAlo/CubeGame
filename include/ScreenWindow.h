@@ -10,11 +10,11 @@
 
 class ScreenWindow {
 public:
-        ScreenWindow(unsigned int width, unsigned int height, const std::string &title);
-        ~ScreenWindow();
+        static ScreenWindow& GetInstance();
+
         void Init();
 
-
+        inline void PollEvents() const { glfwPollEvents(); }
         inline GLFWwindow* GetGLFWWindow() const { return m_Window; }
         inline bool ShouldClose() { return glfwWindowShouldClose(m_Window); }
         inline int GetAr() const { return m_Width / m_Height; }
@@ -22,6 +22,11 @@ public:
         inline unsigned int GetHeight() const { return m_Height; }
 
 private:
+        ScreenWindow(unsigned int width, unsigned int height, const std::string &title);
+        ~ScreenWindow();
+        ScreenWindow(const ScreenWindow&) = delete;
+        ScreenWindow& operator=(const ScreenWindow&) = delete;
+
         void SetHints();
 
 private:

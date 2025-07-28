@@ -9,10 +9,12 @@
 #include "Utils.h"
 #include "Constants.h"
 
+void ChunkBuilder::Reset(){
+        m_Faces = {};
+}
+
 void ChunkBuilder::AddFace(Face face) {
         m_Faces.push_back(face);
-        std::cout << "Added Face at " << directionToString(face.FaceDirection) << "\n";
-        std::cout << std::flush;
 }
 
 void ChunkBuilder::AddCube(const Cube& cube) {

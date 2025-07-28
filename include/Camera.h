@@ -5,7 +5,7 @@
 
 class Camera {
 public:
-        Camera(float fov, float ar, glm::vec3 position);
+        void Init(float fov, float ar, glm::vec3 position, glm::vec3 forward);
 
         inline const glm::mat4& GetView() const { return m_ViewMx; }
         inline const glm::mat4& GetProjection() const { return m_ProjectionMx; }
@@ -18,9 +18,10 @@ private:
         float m_Ar { };
 
         glm::vec3 m_Position {};
-        glm::vec3 m_Right {};
-        glm::vec3 m_Forward {};
+
         glm::vec3 m_Up {};
+        glm::vec3 m_Forward {};
+        glm::vec3 m_Right {};
 
         glm::mat4 m_ProjectionMx {};
         glm::mat4 m_ViewMx {};

@@ -11,18 +11,15 @@ extern "C" {
 
 class LuaExecutor {
 public:
-        static LuaExecutor& GetInstance();
-
         void SetSourceCode(const std::string& sourceCode);
         int GetColor(glm::vec3 position);
 
-private:
         LuaExecutor();
         ~LuaExecutor();
-        LuaExecutor(const LuaExecutor&) = delete;
-        LuaExecutor& operator=(const LuaExecutor&) = delete;
+private:
 
         bool LoadFunction(const std::string& fullCode);
+        bool IsFunctionReadyForUse();
 
 private:
         static inline const std::string s_LuaFnName = "getColor";

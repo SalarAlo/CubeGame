@@ -11,7 +11,7 @@ class ImGuiView {
 public:
         static ImGuiView& GetInstance();
 
-        void Init(ScreenWindow& window);
+        void Init();
         void SetupUI();
         void DrawUI() const;
 
