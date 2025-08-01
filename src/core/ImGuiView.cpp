@@ -34,31 +34,42 @@ void ImGuiView::Compile() const {
         m_OnCompile();
 }
 
-void ImGuiView::SetupUI() {
+
+void ImGuiView::SetupUI(float editorWidth, float editorHeight, float editorX, float editorY) {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
-
         ImGui::NewFrame();
-        ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);   
-        ImGui::SetNextWindowSize(ImVec2(m_WindowWidth, m_WindowHeight), ImGuiCond_Always); 
-        ImGui::Begin(
-                "Text Editor", 
-                nullptr,     
-                ImGuiWindowFlags_NoMove | 
-                ImGuiWindowFlags_NoResize
+
+        ImGui::SetNextWindowPos(ImVec2(editorX, editorY), ImGuiCond_Always);
+        ImGui::SetNextWindowSize(ImVec2(editorWidth, editorHeight), ImGuiCond_Always);
+
+        ImGui::Begin("Text Editor", nullptr,
+                ImGuiWindowFlags_NoResize |
+                ImGuiWindowFlags_NoMove   |
+                ImGuiWindowFlags_NoCollapse |
+                ImGuiWindowFlags_NoTitleBar
         );
 
+
+        constexpr unsigned int initialLinesAmt { 30 };
         ImGui::InputTextMultiline(
-                "##editor", m_EditorBuffer, sizeof(m_EditorBuffer),
-                ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 50)
+                "##editor", 
+                m_EditorBuffer, sizeof(m_EditorBuffer),
+                ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * initialLinesAmt)
         );
 
-        if(ImGui::Button("Compile", ImVec2(m_WindowWidth - 15, 80))) {
+        constexpr int buttonHeight { 50 };
+        const int buttonPaddingLR { -15 };
+        const int buttonWidth { static_cast<int>(editorWidth + buttonPaddingLR) };
+
+        if (ImGui::Button("Compile", ImVec2(buttonWidth, buttonHeight))) {
                 Compile();
         }
 
         ImGui::End();
 }
+
+
 
 void ImGuiView::DrawUI() const {
         ImGui::Render();

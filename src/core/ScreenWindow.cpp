@@ -3,7 +3,7 @@
 
 #include <cassert>
 
-static constexpr int WINDOW_HEIGHT { 1000 };
+static constexpr int WINDOW_HEIGHT { 700 };
 static constexpr int WINDOW_WIDTH { 1000 };
 static const std::string WINDOW_TITLE { "Replicube" };
 
@@ -43,6 +43,7 @@ void ScreenWindow::Init() {
 	loadWithGlad();
 
 	glEnable(GL_DEPTH_TEST);
+        glEnable(GL_SCISSOR_TEST);
 }
 
 void ScreenWindow::SetHints() {

@@ -6,7 +6,10 @@
 void App::Run() {
         ScreenWindow::GetInstance().Init();
 
-        m_Renderer.Init();
+        int renderHeight { static_cast<int>(ScreenWindow::GetInstance().GetHeight()) };
+        int renderWidth { static_cast<int>(ScreenWindow::GetInstance().GetWidth()) / 2 };
+
+        m_Renderer.Init(renderWidth, renderHeight);
         m_Game.Init();
 
         ImGuiView::GetInstance().Init();
@@ -16,13 +19,14 @@ void App::Run() {
         });
 
         while(!ScreenWindow::GetInstance().ShouldClose()) {
-                ImGuiView::GetInstance().SetupUI();
+                ImGuiView::GetInstance().SetupUI(renderWidth, renderHeight, renderWidth);
 
                 ScreenWindow::GetInstance().PollEvents();
 
                 m_Renderer.BeginFrame();
 
                 m_Game.Render(m_Renderer);
+
                 ImGuiView::GetInstance().DrawUI();
 
                 m_Renderer.EndFrame();

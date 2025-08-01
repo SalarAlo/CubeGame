@@ -12,7 +12,7 @@ public:
         static ImGuiView& GetInstance();
 
         void Init();
-        void SetupUI();
+        void SetupUI(float editorWidth, float editorHeight, float editorX = 0, float editorY = 0);
         void DrawUI() const;
 
         inline void SetOnCompileCallback(std::function<void()> onCompile) { m_OnCompile = onCompile; }

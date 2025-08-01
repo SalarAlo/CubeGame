@@ -8,8 +8,8 @@
 #include <glm/fwd.hpp>
 #include <glm/trigonometric.hpp>
 
-
-void Renderer::Init() {
+void Renderer::Init(int renderWidth, int renderHeight, int x, int y) {
+        SetRenderRegion(x, y, renderWidth, renderHeight);
         InitCam();
         InitShader();
         InitBuffers();
@@ -17,14 +17,23 @@ void Renderer::Init() {
 
 void Renderer::InitCam() {
         float degree { glm::radians(20.0f) };
-        float fov { 45.0f };
+        float fov { 90.0f };
+        float ar { static_cast<float>(m_Width) / m_Height };
+
 
         m_Camera.Init(
                 fov, 
-                ScreenWindow::GetInstance().GetAr(), 
+                ar,
                 glm::vec3(0, 20, -30),
                 glm::vec3(0, -glm::sin(degree), glm::cos(degree))
         );
+}
+
+void Renderer::SetRenderRegion(int x, int y, int width, int height) {
+        m_X = x;
+        m_Y = y;
+        m_Height = height;
+        m_Width = width;
 }
 
 void Renderer::BeginFrame() {
@@ -43,6 +52,9 @@ void Renderer::BeginFrame() {
         m_ShaderWriter.WriteUniformMatrix4(modelMatrixName, model);
         m_ShaderWriter.WriteUniformMatrix4(viewMatrixName, m_Camera.GetView());
         m_ShaderWriter.WriteUniformMatrix4(projMatrixName, m_Camera.GetProjection());
+
+        glViewport(m_X, m_Y, m_Width, m_Height);
+        glScissor(m_X, m_Y, m_Width, m_Height);
 }
 
 void Renderer::DrawFrame() {

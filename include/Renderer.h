@@ -14,7 +14,7 @@
 
 class Renderer { 
 public:
-        void Init();
+        void Init(int renderWidth, int renderHeight, int x = 0, int y = 0);
 
         void BeginFrame();
         void DrawFrame();
@@ -25,6 +25,7 @@ private:
         void InitCam();
         void InitShader();
         void InitBuffers();
+        void SetRenderRegion(int x, int y, int width, int height);
 private:
         ShaderManager m_ShaderManager {};
         ShaderWriter m_ShaderWriter {};   
@@ -33,4 +34,9 @@ private:
         VertexArray m_VertexArray {};
 
         Camera m_Camera {};
+
+        int m_X {}; 
+        int m_Y {}; 
+        int m_Width {}; 
+        int m_Height {};
 };
