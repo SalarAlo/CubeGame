@@ -13,6 +13,11 @@ enum MeshColor {
         Cyan,
         Magenta,
         White,
+        Black,
+        Gray,
+        Orange,
+        Purple,
+        Brown,
 };
 
 struct Cube {

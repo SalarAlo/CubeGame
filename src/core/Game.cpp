@@ -30,6 +30,17 @@ void Game::RebuildChunk(LuaExecutor& executor) {
 }
 
 void Game::Render(Renderer& renderer) {
+        Light light {};
+        light.Init(
+                0.1f,
+                0.8f,
+                0.1f,
+                {1.0f, 1.0f, 1.0f},
+                {-0.2f, -1.0f, -0.3f}
+        );
+
         renderer.SetupBufferForDraw(m_ChunkBuilder);
+
         renderer.DrawFrame();
+        renderer.SetLight(light);
 }

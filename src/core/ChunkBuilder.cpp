@@ -17,8 +17,7 @@ void ChunkBuilder::AddFace(Face face) {
         m_Faces.push_back(face);
 }
 
-void ChunkBuilder::AddCube(const Cube& cube) {
-        constexpr int directionCount { 6 };
+void ChunkBuilder::AddCube(const Cube& cube) { constexpr int directionCount { 6 };
         for(int i = 0; i < directionCount; i++) {
                 Face face { 
                         .Position { cube.Position}, 
@@ -45,11 +44,17 @@ std::vector<float> ChunkBuilder::BuildChunkElementBufferData() const {
                         finalVertices.push_back(vertices[i] + offsets[vertexCoordinateIdx]);
 
                         auto doneWithPositionInsertion = vertexCoordinateIdx == POSITION_VALUES_PER_VERTEX-1;
+
                         if(doneWithPositionInsertion) {
-                                auto rgb = getRgbForColor(face.Color);
+                                glm::vec3 rgb = getRgbForColor(face.Color);
                                 finalVertices.push_back(rgb.r);
                                 finalVertices.push_back(rgb.g);
                                 finalVertices.push_back(rgb.b);
+
+                                glm::vec3 normal = getNormalForDirection(face.FaceDirection);
+                                finalVertices.push_back(normal.x);
+                                finalVertices.push_back(normal.y);
+                                finalVertices.push_back(normal.z);
                         }
                 }
         }

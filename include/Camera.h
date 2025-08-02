@@ -3,6 +3,8 @@
 #include <glm/fwd.hpp>
 #include <glm/glm.hpp>
 
+#include "ShaderWriter.h"
+
 class Camera {
 public:
         void Init(float fov, float ar, glm::vec3 position, glm::vec3 forward);
@@ -13,6 +15,7 @@ public:
         inline void CalculateView();
         inline void CalculateProjection();
 
+        void WriteToShader(ShaderWriter& shaderWriter, glm::mat4 model);
 private:
         float m_Fov { };
         float m_Ar { };

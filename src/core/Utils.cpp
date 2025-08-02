@@ -4,14 +4,28 @@
 #include <GLFW/glfw3.h>
 
 #include <cassert>
+#include <glm/fwd.hpp>
 #include <regex>
 #include <vector>
 
 #include "Config.h"
+#include "Cube.h"
 #include "Face.h"
 
+glm::vec3 getNormalForDirection(Direction direction) {
+        switch (direction) {
+                case Direction::Top:     return glm::vec3(0.0f, 1.0f, 0.0f);
+                case Direction::Bottom:  return glm::vec3(0.0f, -1.0f, 0.0f);
+                case Direction::Right:   return glm::vec3(1.0f, 0.0f, 0.0f);
+                case Direction::Left:    return glm::vec3(-1.0f, 0.0f, 0.0f);
+                case Direction::Forward: return glm::vec3(0.0f, 0.0f, 1.0f);
+                case Direction::Back:    return glm::vec3(0.0f, 0.0f, -1.0f);
+                default:                 return glm::vec3(0.0f, 0.0f, 0.0f); // or assert(false)
+        }
+}
+
 glm::vec3 getRgbForColor(MeshColor color) {
-    switch (color) {
+        switch (color) {
         case Red:     return {1.0f, 0.0f, 0.0f};
         case Green:   return {0.0f, 1.0f, 0.0f};
         case Blue:    return {0.0f, 0.0f, 1.0f};
@@ -19,8 +33,13 @@ glm::vec3 getRgbForColor(MeshColor color) {
         case Cyan:    return {0.0f, 1.0f, 1.0f};
         case Magenta: return {1.0f, 0.0f, 1.0f};
         case White:   return {1.0f, 1.0f, 1.0f};
-        default:      return {0.0f, 0.0f, 0.0f};  // fallback: black
-    }
+        case Black:   return {0.0f, 0.0f, 0.0f};
+        case Gray:    return {0.5f, 0.5f, 0.5f};
+        case Orange:  return {1.0f, 0.5f, 0.0f};
+        case Purple:  return {0.5f, 0.0f, 0.5f};
+        case Brown:   return {0.6f, 0.3f, 0.1f};
+        default:      return getRgbForColor(MeshColor::Magenta);  
+        }
 }
 void loadWithGlad() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {

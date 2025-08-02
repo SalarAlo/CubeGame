@@ -3,8 +3,8 @@
 
 #include <cassert>
 
-static constexpr int WINDOW_HEIGHT { 700 };
-static constexpr int WINDOW_WIDTH { 1000 };
+static constexpr int WINDOW_HEIGHT { 1080 };
+static constexpr int WINDOW_WIDTH { 1920 };
 static const std::string WINDOW_TITLE { "Replicube" };
 
 ScreenWindow::ScreenWindow(

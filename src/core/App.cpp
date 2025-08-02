@@ -4,10 +4,11 @@
 #include <X11/Xlib.h>
 
 void App::Run() {
-        ScreenWindow::GetInstance().Init();
+        auto& window = ScreenWindow::GetInstance();
+        window.Init();
 
-        int renderHeight { static_cast<int>(ScreenWindow::GetInstance().GetHeight()) };
-        int renderWidth { static_cast<int>(ScreenWindow::GetInstance().GetWidth()) / 2 };
+        const int renderHeight { static_cast<int>(window.GetHeight()) };
+        const int renderWidth { static_cast<int>(window.GetWidth()) / 2 };
 
         m_Renderer.Init(renderWidth, renderHeight);
         m_Game.Init();
@@ -18,10 +19,10 @@ void App::Run() {
                 this->OnCompilePressed();
         });
 
-        while(!ScreenWindow::GetInstance().ShouldClose()) {
-                ImGuiView::GetInstance().SetupUI(renderWidth, renderHeight, renderWidth);
+        while(!window.ShouldClose()) {
+                window.PollEvents();
 
-                ScreenWindow::GetInstance().PollEvents();
+                ImGuiView::GetInstance().SetupUI(renderWidth, renderHeight, renderWidth);
 
                 m_Renderer.BeginFrame();
 

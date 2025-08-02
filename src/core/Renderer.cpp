@@ -12,8 +12,7 @@ void Renderer::Init(int renderWidth, int renderHeight, int x, int y) {
         SetRenderRegion(x, y, renderWidth, renderHeight);
         InitCam();
         InitShader();
-        InitBuffers();
-}
+        InitBuffers(); }
 
 void Renderer::InitCam() {
         float degree { glm::radians(20.0f) };
@@ -42,16 +41,11 @@ void Renderer::BeginFrame() {
 
         m_ShaderManager.UseShaderProgram();
 
-	const std::string modelMatrixName { "model" };
-	const std::string viewMatrixName { "view" };
-	const std::string projMatrixName { "projection" };
-
         float time = (float)glfwGetTime();
         glm::mat4 model = glm::rotate(glm::mat4(1.0f), time, glm::vec3(0, 1.0f, 0.0f));
 
-        m_ShaderWriter.WriteUniformMatrix4(modelMatrixName, model);
-        m_ShaderWriter.WriteUniformMatrix4(viewMatrixName, m_Camera.GetView());
-        m_ShaderWriter.WriteUniformMatrix4(projMatrixName, m_Camera.GetProjection());
+        m_Camera.WriteToShader(m_ShaderWriter, model);
+        m_Light.WriteToShader(m_ShaderWriter);
 
         glViewport(m_X, m_Y, m_Width, m_Height);
         glScissor(m_X, m_Y, m_Width, m_Height);
@@ -93,6 +87,7 @@ void Renderer::InitBuffers() {
         m_VertexBuffer.Bind();
 
         VertexBufferLayout layout;
+        layout.Push<float>(false, 3);
         layout.Push<float>(false, 3);
         layout.Push<float>(false, 3);
 

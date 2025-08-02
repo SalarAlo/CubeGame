@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Camera.h"
+#include "Light.h"
 #include "ScreenWindow.h"
 #include "ChunkBuilder.h"
 
@@ -21,11 +22,13 @@ public:
         void EndFrame();
         void SetupBufferForDraw(const ChunkBuilder& chunkBuilder);
 
+        inline void SetLight(const Light& light) { m_Light = light; }
 private:
         void InitCam();
         void InitShader();
         void InitBuffers();
         void SetRenderRegion(int x, int y, int width, int height);
+
 private:
         ShaderManager m_ShaderManager {};
         ShaderWriter m_ShaderWriter {};   
@@ -34,6 +37,7 @@ private:
         VertexArray m_VertexArray {};
 
         Camera m_Camera {};
+        Light m_Light {};
 
         int m_X {}; 
         int m_Y {}; 

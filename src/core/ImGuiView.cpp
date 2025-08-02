@@ -51,7 +51,8 @@ void ImGuiView::SetupUI(float editorWidth, float editorHeight, float editorX, fl
         );
 
 
-        constexpr unsigned int initialLinesAmt { 30 };
+        constexpr unsigned int initialLinesAmt { 40 };
+
         ImGui::InputTextMultiline(
                 "##editor", 
                 m_EditorBuffer, sizeof(m_EditorBuffer),
