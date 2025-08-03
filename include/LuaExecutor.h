@@ -22,10 +22,7 @@ private:
         bool IsFunctionReadyForUse();
 
 private:
-        static inline const std::string s_LuaFnName = "getColor";
-        static inline const std::string s_LuaFnStart = "function getColor(x, y, z)\n";
-        static inline const std::string s_LuaFnEnd = "\nend";
-
+        static const std::string s_LuaFnName;
         lua_State* m_State = nullptr;
         bool m_FunctionLoaded = false;
 };

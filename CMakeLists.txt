@@ -30,6 +30,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE imgui)
 add_subdirectory(external/lua)
 target_link_libraries(${PROJECT_NAME} PRIVATE lua)
 
+# Magic enum
+add_subdirectory(external/magic_enum)
+target_link_libraries(${PROJECT_NAME} PRIVATE magic_enum)
+
 # require packages
 find_package(OpenGL REQUIRED)
 find_package(glm REQUIRED)
@@ -39,6 +43,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE external/glad/include)
 target_include_directories(${PROJECT_NAME} PRIVATE external/glfw/include)
 target_include_directories(${PROJECT_NAME} PRIVATE external/imgui)
 target_include_directories(${PROJECT_NAME} PRIVATE external/lua)
+target_include_directories(${PROJECT_NAME} PRIVATE external/magic_enum)
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_HEADER_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${GLM_INCLUDE_DIRS})
 

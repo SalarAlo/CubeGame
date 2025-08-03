@@ -1,6 +1,11 @@
 #include "LuaExecutor.h"
+#include "Cube.h"
+#include "magic_enum/magic_enum.hpp"
 #include <iostream>
 #include <cassert>
+#include <string>
+
+const std::string LuaExecutor::s_LuaFnName = "getColor";
 
 LuaExecutor::LuaExecutor() {
         m_State = luaL_newstate();
@@ -31,7 +36,17 @@ bool LuaExecutor::LoadFunction(const std::string& fullCode) {
 }
 
 void LuaExecutor::SetSourceCode(const std::string& sourceCode) {
-        std::string fullCode = s_LuaFnStart + sourceCode + s_LuaFnEnd;
+        const std::string luaFnStart = "function " + s_LuaFnName + "(x, y, z) \n";
+        const std::string luaFnEnd = "\nend";
+        std::string luaColorDecl {};
+
+        for(auto color : magic_enum::enum_values<MeshColor>()) {
+                auto colorName = std::string(magic_enum::enum_name(color));
+                auto colorIdxStr = std::to_string(static_cast<int>(color));
+                luaColorDecl += ("local " +colorName + " = " + colorIdxStr + "\n");
+        }
+
+        std::string fullCode = luaFnStart + luaColorDecl + sourceCode + luaFnEnd;
 
         m_FunctionLoaded = LoadFunction(fullCode);
 }
