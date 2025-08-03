@@ -2,6 +2,7 @@
 #include "ChunkBuilder.h"
 #include "Config.h"
 #include "Cube.h"
+#include "MeshColor.h"
 #include "ScreenWindow.h"
 
 void Game::Init() {
@@ -21,8 +22,9 @@ void Game::RebuildChunk(LuaExecutor& executor) {
                                 auto color = executor.GetColor(position);
 
                                 if(color == -1) continue;
-
-                                Cube cube { position, static_cast<MeshColor>(color)};
+                                auto colorType = static_cast<MeshColor::Type>(color);
+                                MeshColor colorObj { colorType };
+                                Cube cube { position, colorObj };
                                 m_ChunkBuilder.AddCube(cube);
                         }
                 }

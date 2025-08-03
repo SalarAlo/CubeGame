@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Cube.h"
 #include "Face.h"
 #include <string>
 #include <vector>
@@ -11,6 +10,3 @@
 void loadWithGlad();
 std::vector<std::string> split(std::string s, const std::string& delimiter);
 unsigned int getSizeOfType(GLenum type);
-glm::vec3 getRgbForColor(MeshColor color);
-glm::vec3 getNormalForDirection(Direction direction);
-std::string directionToString(Direction direction);

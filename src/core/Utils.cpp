@@ -12,35 +12,7 @@
 #include "Cube.h"
 #include "Face.h"
 
-glm::vec3 getNormalForDirection(Direction direction) {
-        switch (direction) {
-                case Direction::Top:     return glm::vec3(0.0f, 1.0f, 0.0f);
-                case Direction::Bottom:  return glm::vec3(0.0f, -1.0f, 0.0f);
-                case Direction::Right:   return glm::vec3(1.0f, 0.0f, 0.0f);
-                case Direction::Left:    return glm::vec3(-1.0f, 0.0f, 0.0f);
-                case Direction::Forward: return glm::vec3(0.0f, 0.0f, 1.0f);
-                case Direction::Back:    return glm::vec3(0.0f, 0.0f, -1.0f);
-                default:                 return glm::vec3(0.0f, 0.0f, 0.0f); // or assert(false)
-        }
-}
 
-glm::vec3 getRgbForColor(MeshColor color) {
-        switch (color) {
-        case Red:     return {1.0f, 0.0f, 0.0f};
-        case Green:   return {0.0f, 1.0f, 0.0f};
-        case Blue:    return {0.0f, 0.0f, 1.0f};
-        case Yellow:  return {1.0f, 1.0f, 0.0f};
-        case Cyan:    return {0.0f, 1.0f, 1.0f};
-        case Magenta: return {1.0f, 0.0f, 1.0f};
-        case White:   return {1.0f, 1.0f, 1.0f};
-        case Black:   return {0.0f, 0.0f, 0.0f};
-        case Gray:    return {0.5f, 0.5f, 0.5f};
-        case Orange:  return {1.0f, 0.5f, 0.0f};
-        case Purple:  return {0.5f, 0.0f, 0.5f};
-        case Brown:   return {0.6f, 0.3f, 0.1f};
-        default:      return getRgbForColor(MeshColor::Magenta);  
-        }
-}
 void loadWithGlad() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		assert(false && "Failed loading function ptrs with glad");
@@ -71,25 +43,5 @@ unsigned int getSizeOfType(GLenum type) {
         default:
                 assert("Undefined GLenum type. Cant get size of that type!");
                 return 0;
-        }
-}
-
-std::string directionToString(Direction direction) {
-        switch(direction) {
-        case Direction::Top:
-                return std::string { "Top" };
-        case Direction::Bottom:
-                return std::string { "Bottom" };
-        case Direction::Right:
-                return std::string { "Right" };
-        case Direction::Left:
-                return std::string { "Left" };
-        case Direction::Forward:
-                return std::string { "Forward" };
-        case Direction::Back:
-                return std::string { "Back" };
-        default:
-                assert(false && "Unhandled case for direction to string conversion");
-                return std::string { "" };
         }
 }

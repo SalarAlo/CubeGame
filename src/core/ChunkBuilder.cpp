@@ -8,6 +8,7 @@
 #include "Face.h"
 #include "Utils.h"
 #include "Constants.h"
+#include "Direction.h"
 
 void ChunkBuilder::Reset(){
         m_Faces = {};
@@ -21,7 +22,7 @@ void ChunkBuilder::AddCube(const Cube& cube) { constexpr int directionCount { 6 
         for(int i = 0; i < directionCount; i++) {
                 Face face { 
                         .Position { cube.Position}, 
-                        .FaceDirection { static_cast<Direction>(i) }, 
+                        .FaceDirection { static_cast<Direction::Type>(i) }, 
                         .Color { cube.Color } 
                 };
                 AddFace(face);
@@ -35,7 +36,7 @@ std::vector<float> ChunkBuilder::BuildChunkElementBufferData() const {
 
 
         for (const auto& face : m_Faces) {
-                FacePositionVertices vertices { DIRECTION_TO_VERTICES[static_cast<std::size_t>(face.FaceDirection)] };
+                Direction::FacePositionVertices vertices { face.FaceDirection.GetVertices() };
                 auto position = face.Position; 
                 std::array<float, VALUES_PER_VERTEX> offsets = { position.x, position.y, position.z };
 
@@ -46,12 +47,12 @@ std::vector<float> ChunkBuilder::BuildChunkElementBufferData() const {
                         auto doneWithPositionInsertion = vertexCoordinateIdx == POSITION_VALUES_PER_VERTEX-1;
 
                         if(doneWithPositionInsertion) {
-                                glm::vec3 rgb = getRgbForColor(face.Color);
+                                glm::vec3 rgb = face.Color.GetRgb();
                                 finalVertices.push_back(rgb.r);
                                 finalVertices.push_back(rgb.g);
                                 finalVertices.push_back(rgb.b);
 
-                                glm::vec3 normal = getNormalForDirection(face.FaceDirection);
+                                glm::vec3 normal = face.FaceDirection.GetNormal();
                                 finalVertices.push_back(normal.x);
                                 finalVertices.push_back(normal.y);
                                 finalVertices.push_back(normal.z);

@@ -5,20 +5,7 @@
 
 #include <glm/glm.hpp>
 
-enum MeshColor {
-        Red,
-        Green,
-        Blue,
-        Yellow,
-        Cyan,
-        Magenta,
-        White,
-        Black,
-        Gray,
-        Orange,
-        Purple,
-        Brown,
-};
+#include "MeshColor.h"
 
 struct Cube {
         glm::vec3 Position;
