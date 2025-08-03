@@ -4,6 +4,7 @@
 #include <functional>
 
 #include "ScreenWindow.h"
+#include "imgui.h"
 
 constexpr unsigned int EDITOR_BUFFER_MAX_SIZE { 1024 * 16 };
 
@@ -24,4 +25,5 @@ private:
         unsigned int m_WindowWidth {};
         unsigned int m_WindowHeight {};
         std::function<void()> m_OnCompile {};
+        ImFont* m_Font {};
 };

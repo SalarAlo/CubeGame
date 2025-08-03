@@ -39,11 +39,10 @@ void LuaExecutor::SetSourceCode(const std::string& sourceCode) {
         const std::string luaFnStart = "function " + s_LuaFnName + "(x, y, z) \n";
         const std::string luaFnEnd = "\nend";
         std::string luaColorDecl {};
-
         for(auto color : magic_enum::enum_values<MeshColor>()) {
                 auto colorName = std::string(magic_enum::enum_name(color));
                 auto colorIdxStr = std::to_string(static_cast<int>(color));
-                luaColorDecl += ("local " +colorName + " = " + colorIdxStr + "\n");
+                luaColorDecl += ("local " + colorName + " = " + colorIdxStr + "\n");
         }
 
         std::string fullCode = luaFnStart + luaColorDecl + sourceCode + luaFnEnd;
