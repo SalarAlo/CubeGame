@@ -12,6 +12,18 @@
 #include "Cube.h"
 #include "Face.h"
 
+void forEachVoxel(int sizeX, int sizeY, int sizeZ, std::function<void(int,int,int)> callback) {
+        const int sizeXHalfed { sizeX / 2 };
+        const int sizeZHalfed { sizeZ / 2 };
+
+        for(int y = 0; y < sizeY; y++) {
+                for(int z = -sizeZHalfed; z < sizeZHalfed; z++) {
+                        for(int x = -sizeXHalfed; x < sizeXHalfed; x++) {
+                                callback(x, y, z);
+                        }
+                }
+        }
+}
 
 void loadWithGlad() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {

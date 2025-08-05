@@ -1,0 +1,5 @@
+{
+        "name": "Simple Cube",
+        "light_color": [1, 1, 1],
+        "sizes": [16, 16, 16]
+}

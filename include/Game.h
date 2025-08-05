@@ -4,6 +4,7 @@
 #include "ChunkBuilder.h"
 #include "Config.h"
 #include "Cube.h"
+#include "LevelManager.h"
 #include "LuaExecutor.h"
 #include "Renderer.h"
 
@@ -20,6 +21,7 @@ public:
         void RebuildChunk(LuaExecutor& executor);
 
 private:
+        LevelManager m_LevelManager {};
         ChunkBuilder m_ChunkBuilder {};
         GameState m_GameState {};
 };

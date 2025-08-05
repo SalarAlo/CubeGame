@@ -3,7 +3,6 @@
 #include "Camera.h"
 #include "Light.h"
 #include "ScreenWindow.h"
-#include "ChunkBuilder.h"
 
 #include "ShaderManager.h"
 #include "ShaderUtils.h"
@@ -20,7 +19,7 @@ public:
         void BeginFrame();
         void DrawFrame();
         void EndFrame();
-        void SetupBufferForDraw(const ChunkBuilder& chunkBuilder);
+        void SetupBufferForDraw(const std::vector<float>& vertices);
 
         inline void SetLight(const Light& light) { m_Light = light; }
 private:

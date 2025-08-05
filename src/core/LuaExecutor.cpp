@@ -39,7 +39,7 @@ bool LuaExecutor::LoadFunction(const std::string& fullCode) {
 void LuaExecutor::SetSourceCode(const std::string& sourceCode) {
         const std::string luaFnStart = "function " + s_LuaFnName + "(x, y, z) \n";
         const std::string luaFnEnd = "\nend";
-        std::string luaColorDecl {};
+        std::string luaColorDecl {"Nothing = -1\n"};
         for(auto color : magic_enum::enum_values<MeshColor::Type>()) {
                 auto colorName = std::string(magic_enum::enum_name(color));
                 auto colorIdxStr = std::to_string(static_cast<int>(color));

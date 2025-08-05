@@ -12,7 +12,8 @@ void Renderer::Init(int renderWidth, int renderHeight, int x, int y) {
         SetRenderRegion(x, y, renderWidth, renderHeight);
         InitCam();
         InitShader();
-        InitBuffers(); }
+        InitBuffers(); 
+}
 
 void Renderer::InitCam() {
         float degree { glm::radians(20.0f) };
@@ -57,11 +58,10 @@ void Renderer::DrawFrame() {
         m_VertexArray.Unbind();
 }
 
-void Renderer::SetupBufferForDraw(const ChunkBuilder& chunkBuilder) {
+void Renderer::SetupBufferForDraw(const std::vector<float>& vertices) {
         m_VertexArray.Bind();
         m_VertexBuffer.Bind();
 
-        auto vertices = chunkBuilder.BuildChunkElementBufferData();
 	m_VertexBuffer.SetData(vertices.data(), sizeof(vertices[0]) * vertices.size());
 
         m_VertexArray.Unbind();

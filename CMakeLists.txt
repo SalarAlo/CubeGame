@@ -34,6 +34,15 @@ target_link_libraries(${PROJECT_NAME} PRIVATE lua)
 add_subdirectory(external/magic_enum)
 target_link_libraries(${PROJECT_NAME} PRIVATE magic_enum)
 
+#
+include(FetchContent)
+FetchContent_Declare(
+        json
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_TAG v3.11.2
+)
+FetchContent_MakeAvailable(json)
+
 # require packages
 find_package(OpenGL REQUIRED)
 find_package(glm REQUIRED)
@@ -49,4 +58,5 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${GLM_INCLUDE_DIRS})
 
 # link library
 target_link_libraries(${PROJECT_NAME} PRIVATE OpenGL::GL)
+target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
 

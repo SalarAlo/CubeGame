@@ -4,6 +4,7 @@
 #include "Cube.h"
 #include "MeshColor.h"
 #include "ScreenWindow.h"
+#include "Utils.h"
 
 void Game::Init() {
         // Could maybe be needed some day 
@@ -13,26 +14,31 @@ void Game::Init() {
 void Game::RebuildChunk(LuaExecutor& executor) {
         m_ChunkBuilder.Reset();
 
-        constexpr int chunkSizeHalfed { CHUNK_SIZE / 2 };
+        m_LevelManager.LoadLevel(1);
+        const auto& cubes = m_LevelManager.GetCurrentLevel().Cubes;
+        for(const auto& cube : cubes) {
+                m_ChunkBuilder.AddCube(cube);
+        }
 
-        for(int y = 0; y < CHUNK_HEIGHT; y++) {
-                for(int z = -chunkSizeHalfed; z < chunkSizeHalfed; z++) {
-                        for(int x = -chunkSizeHalfed; x < chunkSizeHalfed; x++) {
-                                glm::vec3 position { x, y, z };
-                                auto color = executor.GetColor(position);
+        if(false) {
+        forEachVoxel(CHUNK_SIZE, CHUNK_HEIGHT, CHUNK_SIZE, [&](int x, int y, int z) {
+                glm::vec3 position { x, y, z };
+                auto color = executor.GetColor(position);
 
-                                if(color == -1) continue;
-                                auto colorType = static_cast<MeshColor::Type>(color);
-                                MeshColor colorObj { colorType };
-                                Cube cube { position, colorObj };
-                                m_ChunkBuilder.AddCube(cube);
-                        }
-                }
+                if(color == -1) return;
+
+                auto colorType = static_cast<MeshColor::Type>(color);
+                MeshColor colorObj { colorType };
+                Cube cube { position, colorObj };
+
+                m_ChunkBuilder.AddCube(cube);
+        });
         }
 }
 
 void Game::Render(Renderer& renderer) {
         Light light {};
+
         light.Init(
                 0.1f,
                 0.8f,
@@ -41,7 +47,7 @@ void Game::Render(Renderer& renderer) {
                 {-0.2f, -1.0f, -0.3f}
         );
 
-        renderer.SetupBufferForDraw(m_ChunkBuilder);
+        renderer.SetupBufferForDraw(m_ChunkBuilder.BuildChunkElementBufferData());
 
         renderer.DrawFrame();
         renderer.SetLight(light);

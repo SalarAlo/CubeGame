@@ -6,6 +6,7 @@
 class MeshColor {
 public:
         enum Type {
+                Black,
                 Red,
                 Green,
                 Blue,
@@ -13,13 +14,13 @@ public:
                 Cyan,
                 Magenta,
                 White,
-                Black,
                 Gray,
                 Orange,
                 Purple,
                 Brown,
         };
 public:
+        MeshColor() = default;
         MeshColor(Type type);
 
         Type GetColor() const { return m_Color; };
@@ -28,5 +29,5 @@ public:
         static glm::vec3 GetRgb(Type type);
 
 private:
-        Type m_Color;
+        Type m_Color {};
 };
