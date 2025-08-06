@@ -10,5 +10,9 @@
 struct Cube {
         glm::vec3 Position;
         MeshColor Color;
+
+        bool operator==(const Cube& other) const {
+                return other.Color.GetColor() == Color.GetColor() && other.Position == Position;
+        }
 };
 

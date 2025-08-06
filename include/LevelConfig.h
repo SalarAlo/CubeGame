@@ -4,8 +4,8 @@
 #include <array>
 
 struct LevelConfig {
-    std::string Name {};
-    std::array<float, 3> LightColor {};
-    std::array<int, 3> Sizes {};
+        std::string Name {};
+        glm::vec3 LightColor {};
+        glm::vec3 Sizes {};
 };
 

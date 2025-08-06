@@ -1,3 +1,4 @@
+#include <array>
 #include <nlohmann/json.hpp>
 
 #include <fstream>
@@ -15,13 +16,21 @@
 void LevelManager::LoadLevel(int idx) {
         LevelFiles files { GetLevelFiles(idx) };
         Level level {};
+        level.idx = idx;
 
         files.ConfigData.at("name").get_to(level.Config.Name);
-        files.ConfigData.at("light_color").get_to(level.Config.LightColor);
-        files.ConfigData.at("sizes").get_to(level.Config.Sizes);
+
+        std::array<float, 3> lightColor {};
+        files.ConfigData.at("light_color").get_to(lightColor);
+
+        std::array<int, 3> size {};
+        files.ConfigData.at("sizes").get_to(size);
+
+        level.Config.LightColor = { lightColor[0], lightColor[1], lightColor[2] };
+        level.Config.Sizes = { size[0], size[1], size[2] };
 
         forEachVoxel(
-                level.Config.Sizes[0], 
+                level.Config.Sizes[0],
                 level.Config.Sizes[1], 
                 level.Config.Sizes[2], 
 
@@ -77,5 +86,6 @@ void LevelManager::SetLevelConfigData(LevelFiles& levelFiles, int idx) const {
 }
 
 bool LevelManager::CheckPlayerSolution(const std::vector<Cube>& playerVoxels) {
-        return false;
+        return playerVoxels == m_Level.Cubes;
 }
+

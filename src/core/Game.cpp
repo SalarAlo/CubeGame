@@ -2,26 +2,25 @@
 #include "ChunkBuilder.h"
 #include "Config.h"
 #include "Cube.h"
+#include "LevelConfig.h"
 #include "MeshColor.h"
 #include "ScreenWindow.h"
 #include "Utils.h"
+#include <glm/fwd.hpp>
+#include <iostream>
+#include <ostream>
 
 void Game::Init() {
-        // Could maybe be needed some day 
-        // for now it just exists and get called where it should be called
+        // i new it would have a usecase :D
+        m_LevelManager.LoadLevel(1);
 }
 
 void Game::RebuildChunk(LuaExecutor& executor) {
         m_ChunkBuilder.Reset();
 
-        m_LevelManager.LoadLevel(1);
-        const auto& cubes = m_LevelManager.GetCurrentLevel().Cubes;
-        for(const auto& cube : cubes) {
-                m_ChunkBuilder.AddCube(cube);
-        }
+        auto sizes = m_LevelManager.GetCurrentLevel().Config.Sizes;
 
-        if(false) {
-        forEachVoxel(CHUNK_SIZE, CHUNK_HEIGHT, CHUNK_SIZE, [&](int x, int y, int z) {
+        forEachVoxel(sizes.x, sizes.y, sizes.z, [&](int x, int y, int z) {
                 glm::vec3 position { x, y, z };
                 auto color = executor.GetColor(position);
 
@@ -33,22 +32,22 @@ void Game::RebuildChunk(LuaExecutor& executor) {
 
                 m_ChunkBuilder.AddCube(cube);
         });
-        }
 }
 
 void Game::Render(Renderer& renderer) {
         Light light {};
-
+        const Level level { m_LevelManager.GetCurrentLevel() };
+        
         light.Init(
                 0.1f,
                 0.8f,
                 0.1f,
-                {1.0f, 1.0f, 1.0f},
-                {-0.2f, -1.0f, -0.3f}
+                level.Config.LightColor,
+                { -0.2f, -1.0f, -0.3f }
         );
 
         renderer.SetupBufferForDraw(m_ChunkBuilder.BuildChunkElementBufferData());
+        renderer.SetLight(light);
 
         renderer.DrawFrame();
-        renderer.SetLight(light);
 }

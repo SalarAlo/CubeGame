@@ -20,13 +20,17 @@ void ImGuiView::Init() {
         ImGuiIO& io = ImGui::GetIO();
         ImGui::StyleColorsDark();
 
-        
         GLFWwindow* rawWindow = ScreenWindow::GetInstance().GetGLFWWindow();
         m_WindowWidth = ScreenWindow::GetInstance().GetWidth();
         m_WindowHeight = ScreenWindow::GetInstance().GetHeight();
 
         ImGui_ImplGlfw_InitForOpenGL(rawWindow, true);
         ImGui_ImplOpenGL3_Init("#version 330");
+
+        // Initialize the TextEditor
+        m_TextEditor.SetLanguageDefinition(TextEditor::LanguageDefinition::CPlusPlus());
+        m_TextEditor.SetText("// Write your code here...\n");
+        m_TextEditor.SetShowWhitespaces(false);
 }
 
 void ImGuiView::Compile() const {
@@ -34,29 +38,16 @@ void ImGuiView::Compile() const {
         m_OnCompile();
 }
 
-
-void ImGuiView::SetupUI(float editorWidth, float editorHeight, float editorX, float editorY) {
-
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-
+void ImGuiView::Style() {
         ImGuiStyle& style = ImGui::GetStyle();
         ImVec4* colors = style.Colors;
 
-        // Background
         colors[ImGuiCol_WindowBg] = ImVec4(0.11f, 0.15f, 0.17f, 1.00f);
         colors[ImGuiCol_ChildBg]  = ImVec4(0.12f, 0.14f, 0.17f, 1.00f);
-
-        // Buttons
         colors[ImGuiCol_Button]         = ImVec4(0.20f, 0.25f, 0.30f, 1.00f);
         colors[ImGuiCol_ButtonHovered]  = ImVec4(0.30f, 0.35f, 0.40f, 1.00f);
         colors[ImGuiCol_ButtonActive]   = ImVec4(0.15f, 0.20f, 0.25f, 1.00f);
-
-        // Text
         colors[ImGuiCol_Text]           = ImVec4(0.90f, 0.90f, 0.90f, 1.00f);
-
-        // Borders and Highlights
         colors[ImGuiCol_Border]         = ImVec4(0.43f, 0.43f, 0.50f, 0.50f);
         colors[ImGuiCol_FrameBg]        = ImVec4(0.16f, 0.29f, 0.48f, 0.54f);
         colors[ImGuiCol_FrameBgHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.40f);
@@ -67,6 +58,14 @@ void ImGuiView::SetupUI(float editorWidth, float editorHeight, float editorX, fl
         style.ScrollbarRounding = 2.0f;
         style.GrabRounding = 2.0f;
         style.FrameBorderSize = 1.0f;
+}
+
+void ImGuiView::SetupUI(float editorWidth, float editorHeight, float editorX, float editorY) {
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+        Style();
 
         if (m_Font) {
                 ImGui::PushFont(m_Font);
@@ -77,23 +76,15 @@ void ImGuiView::SetupUI(float editorWidth, float editorHeight, float editorX, fl
 
         ImGui::Begin("Text Editor", nullptr,
                 ImGuiWindowFlags_NoResize |
-                ImGuiWindowFlags_NoMove   |
+                ImGuiWindowFlags_NoMove |
                 ImGuiWindowFlags_NoCollapse |
                 ImGuiWindowFlags_NoTitleBar
         );
 
+        m_TextEditor.Render("CodeEditor");
 
-        constexpr unsigned int initialLinesAmt { 40 };
-
-        ImGui::InputTextMultiline(
-                "##editor", 
-                m_EditorBuffer, sizeof(m_EditorBuffer),
-                ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * initialLinesAmt)
-        );
-
-        constexpr int buttonHeight { 50 };
-        const int buttonPaddingLR { -15 };
-        const int buttonWidth { static_cast<int>(editorWidth + buttonPaddingLR) };
+        constexpr float buttonHeight = 50.0f;
+        const float buttonWidth = editorWidth - 30.0f;
 
         if (ImGui::Button("Compile", ImVec2(buttonWidth, buttonHeight))) {
                 Compile();
@@ -106,10 +97,7 @@ void ImGuiView::SetupUI(float editorWidth, float editorHeight, float editorX, fl
         }
 }
 
-
-
 void ImGuiView::DrawUI() const {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
-
